@@ -1,26 +1,226 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-main: #0c0d0e;
+    --bg-surface: #121316;
+    --bg-card: #16171a;
+    --border-subtle: #26282d;
+    --text-primary: #ededed;
+    --text-muted: #9aa0a6;
+    --text-dim: #5f6368;
+    --accent-pill: #f3f4f6;
+    --accent-text: #111111;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    scroll-behavior: auto;
+    font-family: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom luxury scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0c0d0e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #26282d;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f4248;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Typography Utility Classes */
+.font-editorial {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel), "Cinzel", Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+/* Luxury Glassmorphism and Surfaces */
+.glass-panel {
+  background: rgba(22, 23, 26, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.frosted-belief-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Hairline borders */
+.hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hairline-bottom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hairline-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Editorial Heading Tracking */
+.tracking-ultra-wide {
+  letter-spacing: 0.25em;
+}
+
+.tracking-wide-editorial {
+  letter-spacing: 0.12em;
+}
+
+.tracking-snug-editorial {
+  letter-spacing: 0.02em;
+}
+
+/* Pill Action Button */
+.btn-pill-white {
+  background-color: #f3f4f6;
+  color: #111111;
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.1rem;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-pill-white:hover {
+  background-color: #ffffff;
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn-pill-outline {
+  background: transparent;
+  color: #ededed;
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-pill-outline:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+/* Scalloped / Arched cutout container for belief cards */
+.belief-card-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Custom Scroll Line Indicator */
+@keyframes scrollLinePulse {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+  40% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  80% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+.animate-scroll-line {
+  animation: scrollLinePulse 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Lenis smooth scrolling core */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
