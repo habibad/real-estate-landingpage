@@ -313,17 +313,6 @@ export default function ZoomOutGrid({
           </div>
         </div>
       </div>
-
-      {/* Footer Navigation Bar */}
-      <div className="relative z-30 max-w-[1400px] w-full mx-auto px-6 flex items-center justify-between text-xs text-[#9aa0a6]">
-        <span className="font-editorial italic">© 2026 ELYSE LUXURY RESIDENCES</span>
-        <button
-          onClick={() => onNavigateSection("hero")}
-          className="text-white hover:underline underline-offset-4 font-mono text-[11px]"
-        >
-          BACK TO TOP &uarr;
-        </button>
-      </div>
     </div>
   );
 }

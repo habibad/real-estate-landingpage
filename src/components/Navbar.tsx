@@ -19,6 +19,7 @@ export default function Navbar({
   onNavigateHome,
 }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [inProjects, setInProjects] = useState(false);
   const t = SITE_CONTENT[lang].nav;
 
   useEffect(() => {
@@ -28,17 +29,32 @@ export default function Navbar({
       } else {
         setScrolled(false);
       }
+
+      // Check if user is viewing the pinned #projects section
+      const projectsEl = document.getElementById("projects");
+      if (projectsEl) {
+        const rect = projectsEl.getBoundingClientRect();
+        // If projects carousel is occupying the active viewport
+        if (rect.top <= 60 && rect.bottom >= window.innerHeight * 0.4) {
+          setInProjects(true);
+        } else {
+          setInProjects(false);
+        }
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0c0d0e]/80 backdrop-blur-md border-b border-white/10 py-3 sm:py-4"
-          : "bg-transparent border-b border-white/10 py-4 sm:py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        inProjects
+          ? "-translate-y-full opacity-0 pointer-events-none"
+          : scrolled
+          ? "translate-y-0 opacity-100 bg-[#0c0d0e]/80 backdrop-blur-md border-b border-white/10 py-3 sm:py-4"
+          : "translate-y-0 opacity-100 bg-transparent border-b border-white/10 py-4 sm:py-5"
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 md:px-14 flex items-center justify-between">

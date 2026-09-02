@@ -11,6 +11,7 @@ import ProjectsCarousel from "@/components/ProjectsCarousel";
 import BeliefsGrid from "@/components/BeliefsGrid";
 import Amenities from "@/components/Amenities";
 import ZoomOutGrid from "@/components/ZoomOutGrid";
+import Footer from "@/components/Footer";
 import BookVisitModal from "@/components/BookVisitModal";
 import ProjectModal from "@/components/ProjectModal";
 import NavigationDrawer from "@/components/NavigationDrawer";
@@ -97,6 +98,13 @@ function MainContent() {
         onSelectProject={(project) => setSelectedProject(project)}
         onBookVisit={() => setIsBookModalOpen(true)}
         onNavigateSection={handleNavigateSection}
+      />
+
+      {/* SECTION 8: Architectural Luxury Footer */}
+      <Footer
+        lang={lang}
+        onNavigateSection={handleNavigateSection}
+        onBookVisit={() => setIsBookModalOpen(true)}
       />
 
       {/* Interactive Modals and Drawers */}

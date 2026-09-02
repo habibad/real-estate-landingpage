@@ -1,6 +1,7 @@
 export interface ProjectData {
   id: number;
   title: string;
+  headlineParts?: string[];
   subtitle: string;
   category: string;
   area: string;
@@ -78,7 +79,8 @@ export const SITE_CONTENT = {
         {
           id: 1,
           title: "LUMIÈRE LOUNGE & SALON",
-          subtitle: "Contemporary sanctuary featuring bespoke lighting and tailored furnishings",
+          headlineParts: ["LUMIÈRE LOUNGE", "& SALON"],
+          subtitle: "Contemporary sanctuary featuring bespoke lighting, tailored furnishings, and private sommelier tasting alcove.",
           category: "Shared Social Spaces",
           area: "4,200 sq. ft.",
           bedrooms: "Private Salon",
@@ -95,26 +97,9 @@ export const SITE_CONTENT = {
         },
         {
           id: 2,
-          title: "LUMIÈRE MASTER DUPLEX",
-          subtitle: "Minimalist master sanctuary with natural walnut accents and linen textures",
-          category: "Private Residence",
-          area: "3,850 sq. ft.",
-          bedrooms: "4 Bedrooms · 5 Bathrooms",
-          price: "$6,450,000",
-          image: "/images/project-bedroom-v2.jpg",
-          description:
-            "An oasis of quiet sophistication. The master suite features solid American walnut millwork, handcrafted Italian linen bedding, circadian rhythm circadian smart lighting, and an expansive spa-inspired en-suite bathroom.",
-          features: [
-            "Custom integrated walnut headboard & nightstands",
-            "Dual walk-in dressing rooms with glass cabinetry",
-            "Freestanding honed marble soaking tub",
-            "Private morning terrace overlooking serene gardens",
-          ],
-        },
-        {
-          id: 3,
-          title: "LUMIÈRE GRAND RESIDENCE",
-          subtitle: "Double-height living space harmonizing exterior nature with interior luxury",
+          title: "LUMIÈRE DUPLEX RESIDENCES",
+          headlineParts: ["LUMIÈRE DUPLEX", "RESIDENCES"],
+          subtitle: "Two-story luxury apartments that features sunlit living spaces, private terraces, and a selection of exclusive amenities.",
           category: "Duplex Penthouse",
           area: "5,600 sq. ft.",
           bedrooms: "5 Bedrooms · 6 Bathrooms",
@@ -127,6 +112,25 @@ export const SITE_CONTENT = {
             "Custom Gaggenau kitchen with quartzite island",
             "Architectural vertical cedar slat partitions",
             "Direct keycard high-speed elevator access",
+          ],
+        },
+        {
+          id: 3,
+          title: "LUMIÈRE MASTER DUPLEX",
+          headlineParts: ["LUMIÈRE MASTER", "DUPLEX"],
+          subtitle: "Minimalist master sanctuary with natural walnut accents, handcrafted linen textures, and private morning terrace.",
+          category: "Private Residence",
+          area: "3,850 sq. ft.",
+          bedrooms: "4 Bedrooms · 5 Bathrooms",
+          price: "$6,450,000",
+          image: "/images/project-bedroom-v2.jpg",
+          description:
+            "An oasis of quiet sophistication. The master suite features solid American walnut millwork, handcrafted Italian linen bedding, circadian rhythm circadian smart lighting, and an expansive spa-inspired en-suite bathroom.",
+          features: [
+            "Custom integrated walnut headboard & nightstands",
+            "Dual walk-in dressing rooms with glass cabinetry",
+            "Freestanding honed marble soaking tub",
+            "Private morning terrace overlooking serene gardens",
           ],
         },
       ],
@@ -176,10 +180,16 @@ export const SITE_CONTENT = {
       ],
     },
     amenities: {
+      tag: "(WELLNESS & AMENITIES)",
       headline: "WELLNESS-CENTERED AMENITIES",
       description:
         "From private fitness studios to guided meditation sessions, our amenities are designed to enhance your well-being and foster a sense of harmony.",
-      cta: "LEARN MORE",
+      cta: "EXPLORE SANCTUARY",
+      features: [
+        "Private Technogym & Reformer Pilates Atelier",
+        "Cryotherapy Suite & Thermal Contrast Baths",
+        "Sky Atrium Hydrotherapy & Vitality Pool",
+      ],
       gymImage: "/images/amenities-gym-v2.jpg",
       gymAlt: "Private Fitness Studio",
       corridorImage: "/images/amenities-corridor-v2.jpg",
@@ -250,7 +260,8 @@ export const SITE_CONTENT = {
         {
           id: 1,
           title: "LUMIÈRE LOUNGE & SALON",
-          subtitle: "Zeitgenössisches Refugium mit maßgeschneiderter Beleuchtung",
+          headlineParts: ["LUMIÈRE LOUNGE", "& SALON"],
+          subtitle: "Zeitgenössisches Refugium mit maßgeschneiderter Beleuchtung und italienischem Design.",
           category: "Gemeinschaftsräume",
           area: "4.200 sq. ft.",
           bedrooms: "Privater Salon",
@@ -261,20 +272,9 @@ export const SITE_CONTENT = {
         },
         {
           id: 2,
-          title: "LUMIÈRE MASTER DUPLEX",
-          subtitle: "Minimalistisches Master-Heiligtum mit edlem Walnussholz",
-          category: "Private Residenz",
-          area: "3.850 sq. ft.",
-          bedrooms: "4 Schlafzimmer · 5 Bäder",
-          price: "6.450.000 $",
-          image: "/images/project-bedroom-v2.jpg",
-          description: "Eine Oase ruhiger Raffinesse.",
-          features: ["Walnuss-Kopfteil", "Ankleidezimmer", "Marmor-Badewanne"],
-        },
-        {
-          id: 3,
-          title: "LUMIÈRE GRAND RESIDENCE",
-          subtitle: "Doppelstöckige Wohnräume mit architektonischer Eleganz",
+          title: "LUMIÈRE DUPLEX RESIDENZEN",
+          headlineParts: ["LUMIÈRE DUPLEX", "RESIDENZEN"],
+          subtitle: "Zweistöckige Luxusapartments mit sonnendurchfluteten Räumen, privaten Terrassen und exklusiven Annehmlichkeiten.",
           category: "Duplex Penthouse",
           area: "5.600 sq. ft.",
           bedrooms: "5 Schlafzimmer · 6 Bäder",
@@ -282,6 +282,19 @@ export const SITE_CONTENT = {
           image: "/images/project-living-v2.jpg",
           description: "Der Höhepunkt der Elyse Residence.",
           features: ["5,5 Meter Deckenhöhe", "Gaggenau Küche", "Privater Aufzug"],
+        },
+        {
+          id: 3,
+          title: "LUMIÈRE MASTER DUPLEX",
+          headlineParts: ["LUMIÈRE MASTER", "DUPLEX"],
+          subtitle: "Minimalistisches Master-Heiligtum mit edlem Walnussholz, italienischer Bettwäsche und privater Morgenterrasse.",
+          category: "Private Residenz",
+          area: "3.850 sq. ft.",
+          bedrooms: "4 Schlafzimmer · 5 Bäder",
+          price: "6.450.000 $",
+          image: "/images/project-bedroom-v2.jpg",
+          description: "Eine Oase ruhiger Raffinesse.",
+          features: ["Walnuss-Kopfteil", "Ankleidezimmer", "Marmor-Badewanne"],
         },
       ],
     },
@@ -330,10 +343,16 @@ export const SITE_CONTENT = {
       ],
     },
     amenities: {
+      tag: "(WELLNESS & ANNEHMLICHKEITEN)",
       headline: "WELLNESS-ZENTRIERTE ANNEHMLICHKEITEN",
       description:
-        "Von privaten Fitnessstudios bis zu Meditationsräumen – unsere Services steigern Ihr Wohlbefinden.",
+        "Von privaten Fitnessstudios bis zu Meditationsräumen – unsere Services steigern Ihr Wohlbefinden und schaffen absolute Harmonie.",
       cta: "MEHR ERFAHREN",
+      features: [
+        "Privates Technogym & Reformer-Pilates-Atelier",
+        "Kryotherapie-Suite & Thermalkontrastbäder",
+        "Sky-Atrium Hydrotherapie- & Vitalitätsbecken",
+      ],
       gymImage: "/images/amenities-gym-v2.jpg",
       gymAlt: "Privates Fitness-Studio",
       corridorImage: "/images/amenities-corridor-v2.jpg",

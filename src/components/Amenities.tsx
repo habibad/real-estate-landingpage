@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT } from "@/data/siteData";
 
 interface AmenitiesProps {
@@ -13,8 +13,8 @@ interface AmenitiesProps {
 export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
   const containerRef = useRef<HTMLElement>(null);
   const leftColRef = useRef<HTMLDivElement>(null);
-  const centerImgRef = useRef<HTMLDivElement>(null);
-  const rightImgRef = useRef<HTMLDivElement>(null);
+  const centerCardRef = useRef<HTMLDivElement>(null);
+  const rightCardRef = useRef<HTMLDivElement>(null);
 
   const t = SITE_CONTENT[lang].amenities;
 
@@ -22,50 +22,50 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Staggered parallax reveal for the two architectural renders
-      if (centerImgRef.current) {
+      const textItems = leftColRef.current?.querySelectorAll(".amenity-anim");
+      if (textItems && textItems.length > 0) {
+        // ENTRANCE: Exactly matching BeliefsGrid timing (top 75% to top 35%)
         gsap.fromTo(
-          centerImgRef.current,
-          { y: 60, scale: 0.96 },
-          {
-            y: -30,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 80%",
-              end: "bottom top",
-              scrub: 1,
-            },
-          }
-        );
-      }
-
-      if (rightImgRef.current) {
-        gsap.fromTo(
-          rightImgRef.current,
-          { y: 100, scale: 0.98 },
-          {
-            y: -50,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 75%",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          }
-        );
-      }
-
-      if (leftColRef.current) {
-        gsap.fromTo(
-          leftColRef.current,
-          { opacity: 0.6, y: 30 },
+          textItems,
+          { opacity: 0, y: 35 },
           {
             opacity: 1,
             y: 0,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 75%",
+              end: "top 35%",
+              scrub: 0.8,
+            },
+          }
+        );
+
+        // EXIT: Dissolves into invisible only when scrolling past section into next section
+        gsap.to(textItems, {
+          opacity: 0,
+          y: -35,
+          stagger: 0.05,
+          ease: "power2.in",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "bottom 60%",
+            end: "bottom 15%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // Center Card (Fitness Suite): Staggered entrance & exit matching BeliefsGrid cards
+      if (centerCardRef.current) {
+        gsap.fromTo(
+          centerCardRef.current,
+          { opacity: 0, y: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: containerRef.current,
@@ -75,6 +75,52 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             },
           }
         );
+
+        gsap.to(centerCardRef.current, {
+          opacity: 0,
+          y: -50,
+          scale: 0.96,
+          ease: "power2.in",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "bottom 55%",
+            end: "bottom 10%",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // Right Card (Sculptural Atrium): Staggered entrance & exit
+      if (rightCardRef.current) {
+        gsap.fromTo(
+          rightCardRef.current,
+          { opacity: 0, y: 70, scale: 0.94 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 65%",
+              end: "top 25%",
+              scrub: 0.8,
+            },
+          }
+        );
+
+        gsap.to(rightCardRef.current, {
+          opacity: 0,
+          y: -70,
+          scale: 0.96,
+          ease: "power2.in",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "bottom 50%",
+            end: "bottom 5%",
+            scrub: 0.8,
+          },
+        });
       }
     }, containerRef);
 
@@ -85,68 +131,99 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
     <section
       id="amenities"
       ref={containerRef}
-      className="relative w-full min-h-screen py-24 sm:py-36 md:py-48 bg-[#0c0d0e] flex items-center overflow-hidden border-t border-white/5"
+      className="relative w-full min-h-screen py-24 sm:py-32 md:py-40 bg-[#0c0d0e] flex items-center overflow-hidden border-t border-white/5 select-none"
     >
-      <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14">
-        {/* 3-Column Composition matching video frame 16 */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Headline, Narrative & CTA */}
+      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-10 md:px-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Column: Tag, Headline, Narrative, Feature Points & CTA */}
           <div
             ref={leftColRef}
-            className="md:col-span-4 flex flex-col justify-center space-y-8"
+            className="lg:col-span-5 flex flex-col justify-center space-y-7"
           >
-            <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-white uppercase leading-[1.08]">
+            {/* Tag */}
+            <div className="amenity-anim">
+              <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 uppercase">
+                {t.tag || "(WELLNESS & AMENITIES)"}
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h2 className="amenity-anim font-editorial text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-white uppercase leading-[1.06] drop-shadow-md">
               {t.headline}
             </h2>
 
-            <p className="text-xs sm:text-[13px] text-[#9aa0a6] leading-relaxed font-sans-clean max-w-sm">
+            {/* Narrative Description */}
+            <p className="amenity-anim text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light max-w-md">
               {t.description}
             </p>
 
-            <div className="pt-2">
-              <button onClick={onLearnMore} className="btn-pill-white">
+            {/* Curated Amenity Highlights */}
+            {t.features && (
+              <div className="amenity-anim pt-1 space-y-2.5 border-l border-white/15 pl-4 sm:pl-5">
+                {t.features.map((feature, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 text-xs sm:text-[13px] text-white/80 font-sans font-light"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* CTA Button */}
+            <div className="amenity-anim pt-3">
+              <button
+                onClick={onLearnMore}
+                className="bg-white text-black hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
+              >
                 {t.cta}
               </button>
             </div>
           </div>
 
-          {/* Center Column: Gym Fitness Studio Render */}
+          {/* Center Column: Fitness Suite Render */}
           <div
-            ref={centerImgRef}
-            className="md:col-span-4 flex justify-center items-center"
+            ref={centerCardRef}
+            className="lg:col-span-4 flex justify-center items-center"
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[440px] sm:h-[520px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] group">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[460px] sm:h-[520px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] group transition-transform duration-500 hover:scale-[1.02]">
               <Image
                 src={t.gymImage}
                 alt={t.gymAlt}
                 fill
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 text-[10px] font-mono tracking-widest text-white/70 uppercase">
-                (FITNESS SUITE)
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-5 left-5 right-5 flex justify-between items-center text-[10px] font-mono tracking-widest text-white/80 uppercase">
+                <span>(FITNESS ATELIER)</span>
+                <span className="text-white/50">01</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Architectural Walkway & Atrium Render */}
           <div
-            ref={rightImgRef}
-            className="md:col-span-4 flex justify-center items-center"
+            ref={rightCardRef}
+            className="lg:col-span-3 flex justify-center items-center"
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[580px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] group">
+            <div className="relative w-full max-w-[300px] sm:max-w-[340px] h-[420px] sm:h-[480px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] group transition-transform duration-500 hover:scale-[1.02]">
               <Image
                 src={t.corridorImage}
                 alt={t.corridorAlt}
                 fill
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 text-[10px] font-mono tracking-widest text-white/70 uppercase">
-                (SCULPTURAL ATRIUM)
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-5 left-5 right-5 flex justify-between items-center text-[10px] font-mono tracking-widest text-white/80 uppercase">
+                <span>(SCULPTURAL ATRIUM)</span>
+                <span className="text-white/50">02</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
