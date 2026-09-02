@@ -103,7 +103,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border border-white/10 shadow-2xl cursor-pointer transition-all duration-300 hover:border-white/40 hover:scale-[1.02]"
           >
             <Image
-              src="/images/project-lounge.jpg"
+              src="/images/project-lounge-v2.jpg"
               alt="Lumière Lounge"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -120,7 +120,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border border-white/10 shadow-2xl cursor-pointer transition-all duration-300 hover:border-white/40 hover:scale-[1.02]"
           >
             <Image
-              src="/images/beliefs-interior.jpg"
+              src="/images/beliefs-interior-v2.jpg"
               alt="Beliefs Philosophy"
               fill
               className="object-cover brightness-75"
@@ -169,7 +169,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border border-white/10 shadow-2xl cursor-pointer transition-all duration-300 hover:border-white/40 hover:scale-[1.02]"
           >
             <Image
-              src="/images/project-bedroom.jpg"
+              src="/images/project-bedroom-v2.jpg"
               alt="Master Bedroom"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -186,7 +186,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border-2 border-white/30 shadow-2xl cursor-pointer flex flex-col justify-between p-4 sm:p-6 transition-all duration-300 hover:border-white/70 hover:scale-[1.02] ring-2 ring-white/10"
           >
             <Image
-              src="/images/hero-villa.jpg"
+              src="/images/hero-villa-v2.jpg"
               alt="Elyse Hero Villa"
               fill
               className="object-cover brightness-95 transition-transform duration-700 group-hover:scale-105"
@@ -228,7 +228,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border border-white/10 shadow-2xl cursor-pointer transition-all duration-300 hover:border-white/40 hover:scale-[1.02]"
           >
             <Image
-              src="/images/about-living.jpg"
+              src="/images/about-living-v2.jpg"
               alt="About Elyse"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -284,7 +284,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border border-white/10 shadow-2xl cursor-pointer transition-all duration-300 hover:border-white/40 hover:scale-[1.02]"
           >
             <Image
-              src="/images/amenities-gym.jpg"
+              src="/images/amenities-gym-v2.jpg"
               alt="Wellness Gym"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -301,7 +301,7 @@ export default function ZoomOutGrid({
             className="group relative rounded-2xl overflow-hidden bg-[#16171a] border border-white/10 shadow-2xl cursor-pointer transition-all duration-300 hover:border-white/40 hover:scale-[1.02]"
           >
             <Image
-              src="/images/pool-terrace.jpg"
+              src="/images/pool-terrace-v2.jpg"
               alt="Terrace and Pool"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"

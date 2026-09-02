@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ELYSE | Holistic Luxury Residences",
     description: "Where timeless design, wellness-focused living and cultural enrichment converge.",
-    images: [{ url: "/images/hero-villa.jpg" }],
+    images: [{ url: "/images/hero-villa-v2.jpg" }],
   },
 };
 

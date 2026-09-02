@@ -83,7 +83,7 @@ export const SITE_CONTENT = {
           area: "4,200 sq. ft.",
           bedrooms: "Private Salon",
           price: "Inquire for details",
-          image: "/images/project-lounge.jpg",
+          image: "/images/project-lounge-v2.jpg",
           description:
             "Designed by world-renowned interior architects, the Lumière Lounge combines soaring double-height ceilings with organic acoustic drapery, custom Italian leather seating, and sculptural lighting elements.",
           features: [
@@ -101,7 +101,7 @@ export const SITE_CONTENT = {
           area: "3,850 sq. ft.",
           bedrooms: "4 Bedrooms · 5 Bathrooms",
           price: "$6,450,000",
-          image: "/images/project-bedroom.jpg",
+          image: "/images/project-bedroom-v2.jpg",
           description:
             "An oasis of quiet sophistication. The master suite features solid American walnut millwork, handcrafted Italian linen bedding, circadian rhythm circadian smart lighting, and an expansive spa-inspired en-suite bathroom.",
           features: [
@@ -119,7 +119,7 @@ export const SITE_CONTENT = {
           area: "5,600 sq. ft.",
           bedrooms: "5 Bedrooms · 6 Bathrooms",
           price: "$8,900,000",
-          image: "/images/project-living.jpg",
+          image: "/images/project-living-v2.jpg",
           description:
             "The pinnacle of Elyse Residence. Expansive living spaces framed with dark architectural slatted timber, automated climate envelopes, seamless stone floor transitions, and an integrated private rooftop plunge pool.",
           features: [
@@ -180,9 +180,9 @@ export const SITE_CONTENT = {
       description:
         "From private fitness studios to guided meditation sessions, our amenities are designed to enhance your well-being and foster a sense of harmony.",
       cta: "LEARN MORE",
-      gymImage: "/images/amenities-gym.jpg",
+      gymImage: "/images/amenities-gym-v2.jpg",
       gymAlt: "Private Fitness Studio",
-      corridorImage: "/images/amenities-corridor.jpg",
+      corridorImage: "/images/amenities-corridor-v2.jpg",
       corridorAlt: "Sculptural Architectural Walkway",
     },
     zoomOut: {
@@ -255,7 +255,7 @@ export const SITE_CONTENT = {
           area: "4.200 sq. ft.",
           bedrooms: "Privater Salon",
           price: "Auf Anfrage",
-          image: "/images/project-lounge.jpg",
+          image: "/images/project-lounge-v2.jpg",
           description: "Entworfen von renommierten Innenarchitekten.",
           features: ["Weinkeller-Verkostung", "Akustische Zonen", "Panoramafenster"],
         },
@@ -267,7 +267,7 @@ export const SITE_CONTENT = {
           area: "3.850 sq. ft.",
           bedrooms: "4 Schlafzimmer · 5 Bäder",
           price: "6.450.000 $",
-          image: "/images/project-bedroom.jpg",
+          image: "/images/project-bedroom-v2.jpg",
           description: "Eine Oase ruhiger Raffinesse.",
           features: ["Walnuss-Kopfteil", "Ankleidezimmer", "Marmor-Badewanne"],
         },
@@ -279,7 +279,7 @@ export const SITE_CONTENT = {
           area: "5.600 sq. ft.",
           bedrooms: "5 Schlafzimmer · 6 Bäder",
           price: "8.900.000 $",
-          image: "/images/project-living.jpg",
+          image: "/images/project-living-v2.jpg",
           description: "Der Höhepunkt der Elyse Residence.",
           features: ["5,5 Meter Deckenhöhe", "Gaggenau Küche", "Privater Aufzug"],
         },
@@ -334,9 +334,9 @@ export const SITE_CONTENT = {
       description:
         "Von privaten Fitnessstudios bis zu Meditationsräumen – unsere Services steigern Ihr Wohlbefinden.",
       cta: "MEHR ERFAHREN",
-      gymImage: "/images/amenities-gym.jpg",
+      gymImage: "/images/amenities-gym-v2.jpg",
       gymAlt: "Privates Fitness-Studio",
-      corridorImage: "/images/amenities-corridor.jpg",
+      corridorImage: "/images/amenities-corridor-v2.jpg",
       corridorAlt: "Skulpturaler Architektur-Wandelgang",
     },
     zoomOut: {

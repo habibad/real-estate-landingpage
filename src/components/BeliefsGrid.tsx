@@ -92,8 +92,8 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
           {/* Left: Architectural Living Render */}
           <div className="lg:col-span-7 relative h-[360px] sm:h-[480px] md:h-[540px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl animate-intro">
             <Image
-              src="/images/beliefs-interior.jpg"
-              alt="Elyse Inspired Living Room"
+              src="/images/beliefs-intro-v2.jpg"
+              alt="Elyse Inspired Living Sanctuary"
               fill
               className="object-cover object-center"
             />
@@ -130,7 +130,7 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
         {/* Full-bleed background living room render */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/beliefs-interior.jpg"
+            src="/images/beliefs-interior-v2.jpg"
             alt="Elyse Residence Interior Texture"
             fill
             className="object-cover object-center brightness-60"

@@ -57,7 +57,7 @@ export default function Hero({ lang, onScrollDown }: HeroProps) {
       {/* Background Dusk Architectural Villa Render */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-villa.jpg"
+          src="/images/hero-villa-v2.jpg"
           alt="Elyse Residence Dusk Architecture"
           fill
           priority

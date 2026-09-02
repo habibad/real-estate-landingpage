@@ -118,7 +118,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
             <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a]">
               <div ref={imageInnerRef} className="relative w-full h-[120%] -top-[10%]">
                 <Image
-                  src="/images/about-living.jpg"
+                  src="/images/about-living-v2.jpg"
                   alt="Elyse Residence Minimalist Living Room"
                   fill
                   className="object-cover object-center"
