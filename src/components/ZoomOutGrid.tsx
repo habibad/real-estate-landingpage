@@ -78,18 +78,18 @@ export default function ZoomOutGrid({
         <div className="flex items-center gap-3">
           <AnimatedTitle
             as="span"
-            className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/70 block"
+            className="font-editorial italic text-sm sm:text-base tracking-widest text-neutral-500 dark:text-white/70 block"
             yOffset={20}
           >
             {t.zoomOut.tag}
           </AnimatedTitle>
         </div>
 
-        <div className="text-[11px] sm:text-xs text-neutral-500 dark:text-white/50 font-mono tracking-widest uppercase hidden md:block">
+        <div className="text-xs sm:text-sm text-neutral-500 dark:text-white/50 font-mono tracking-widest uppercase hidden md:block">
           <LiveText text={t.zoomOut.instruction} delay={0.1} stagger={0.03} />
         </div>
 
-        <button onClick={onBookVisit} className="btn-pill-white !text-[10px] !py-2 !px-4">
+        <button onClick={onBookVisit} className="btn-pill-white tracking-wider">
           {t.beliefs.cta}
         </button>
       </div>

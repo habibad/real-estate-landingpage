@@ -50,17 +50,17 @@ function NotchedCard({
       </svg>
 
       {/* Card Typography & Inner Content */}
-      <div className="relative z-20 flex flex-col justify-center items-center space-y-3 sm:space-y-4 max-w-[210px] sm:max-w-[230px]">
+      <div className="relative z-20 flex flex-col justify-center items-center space-y-3 sm:space-y-4 max-w-[220px] sm:max-w-[250px]">
         <AnimatedTitle
           as="h3"
-          className="font-editorial italic text-lg sm:text-xl md:text-2xl text-neutral-900 dark:text-white font-normal uppercase leading-snug tracking-wide drop-shadow-md"
+          className="font-editorial italic text-xl sm:text-2xl text-neutral-900 dark:text-white font-normal uppercase leading-snug tracking-wide drop-shadow-md"
           yOffset={25}
         >
           {title}
         </AnimatedTitle>
         <LiveText
           text={description}
-          className="text-xs sm:text-[13px] text-neutral-600 dark:text-white/80 font-sans font-light leading-relaxed"
+          className="text-sm leading-relaxed text-neutral-700 dark:text-white/85 font-sans font-normal"
           delay={0.1}
           stagger={0.03}
         />
@@ -170,7 +170,7 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
           <div className="pb-4 space-y-6 max-w-md">
             <LiveText
               text={t.subHeadline}
-              className="text-xs sm:text-[13px] md:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light"
+              className="text-sm sm:text-base text-neutral-700 dark:text-[#a0a4ab] leading-relaxed font-sans font-normal"
               delay={0.1}
               stagger={0.03}
             />
@@ -178,7 +178,7 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
             <div>
               <button
                 onClick={onBookVisit}
-                className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-7 py-3 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
+                className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
               >
                 {t.cta}
               </button>
@@ -305,13 +305,13 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
             <div className="bento-item lg:col-span-3 flex flex-col justify-start space-y-6 text-right max-w-sm ml-auto pt-2">
               <LiveText
                 text={t.narrative1}
-                className="text-xs sm:text-[13px] text-white/90 leading-relaxed font-sans font-light"
+                className="text-sm sm:text-base text-white/95 leading-relaxed font-sans font-normal"
                 delay={0.1}
                 stagger={0.03}
               />
               <LiveText
                 text={t.narrative2}
-                className="text-xs sm:text-[13px] text-white/70 leading-relaxed font-sans font-light"
+                className="text-sm sm:text-[15px] text-white/80 leading-relaxed font-sans font-normal"
                 delay={0.25}
                 stagger={0.03}
               />

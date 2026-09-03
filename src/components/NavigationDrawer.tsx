@@ -147,18 +147,18 @@ export default function NavigationDrawer({
       </div>
 
       {/* Footer Info */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-black/8 dark:border-white/10 text-xs text-neutral-600 dark:text-[#9aa0a6]">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-black/8 dark:border-white/10 text-xs sm:text-sm text-neutral-600 dark:text-[#9aa0a6]">
         <div className="space-y-1">
-          <div className="flex items-center gap-1.5 text-neutral-900 dark:text-white font-mono text-[11px] uppercase tracking-wider">
-            <MapPin size={12} />
+          <div className="flex items-center gap-1.5 text-neutral-900 dark:text-white font-mono text-xs uppercase tracking-wider">
+            <MapPin size={13} />
             <span>{lang === "en" ? "Location" : "Standort"}</span>
           </div>
           <p>Königsweg 18, 80802 Munich / Zurich Sanctuary</p>
         </div>
 
         <div className="space-y-1">
-          <div className="flex items-center gap-1.5 text-neutral-900 dark:text-white font-mono text-[11px] uppercase tracking-wider">
-            <Mail size={12} />
+          <div className="flex items-center gap-1.5 text-neutral-900 dark:text-white font-mono text-xs uppercase tracking-wider">
+            <Mail size={13} />
             <span>{lang === "en" ? "Direct Concierge" : "Direktkontakt"}</span>
           </div>
           <p>concierge@elyse-residence.com</p>
@@ -170,7 +170,7 @@ export default function NavigationDrawer({
               onClose();
               onBookVisit();
             }}
-            className="btn-pill-white !py-2.5 !px-5 !text-xs"
+            className="btn-pill-white !py-3 !px-6 tracking-wider"
           >
             {lang === "en" ? "BOOK A VISIT" : "BESICHTIGUNG BUCHEN"}
           </button>

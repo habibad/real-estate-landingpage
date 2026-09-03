@@ -62,7 +62,7 @@ export default function Footer({
                   ? "Join our invitation-only journal detailing bespoke finishes, floorplan previews, and private viewing receptions."
                   : "Treten Sie unserem exklusiven Journal bei für Einblicke in Maßanfertigungen, Grundrisse und private Empfänge."
               }
-              className="text-xs sm:text-[13px] text-neutral-600 dark:text-[#9aa0a6] font-sans font-light leading-relaxed max-w-lg"
+              className="text-sm sm:text-base text-neutral-700 dark:text-[#a0a4ab] font-sans font-normal leading-relaxed max-w-lg"
               delay={0.15}
               stagger={0.03}
             />
@@ -72,7 +72,7 @@ export default function Footer({
           <div className="lg:col-span-6 flex flex-col justify-center">
             {subscribed ? (
               <div className="p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/15 dark:border-white/20 text-center">
-                <p className="font-editorial italic text-sm text-neutral-900 dark:text-white">
+                <p className="font-editorial italic text-base text-neutral-900 dark:text-white">
                   {isEn
                     ? "Thank you. You have been registered for private correspondence."
                     : "Vielen Dank. Sie wurden für die private Korrespondenz registriert."}
@@ -88,17 +88,17 @@ export default function Footer({
                     isEn ? "Enter your email address..." : "Ihre E-Mail-Adresse..."
                   }
                   required
-                  className="flex-1 bg-white dark:bg-white/[0.04] border border-black/15 dark:border-white/15 focus:border-black/50 dark:focus:border-white/50 rounded-full px-6 py-3.5 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-white/40 focus:outline-none transition-colors"
+                  className="flex-1 bg-white dark:bg-white/[0.04] border border-black/15 dark:border-white/15 focus:border-black/50 dark:focus:border-white/50 rounded-full px-6 py-3.5 text-sm sm:text-base text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-white/40 focus:outline-none transition-colors"
                 />
                 <button
                   type="submit"
-                  className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-7 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shrink-0 shadow-lg cursor-pointer"
+                  className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase shrink-0 shadow-lg cursor-pointer"
                 >
                   {isEn ? "JOIN REGISTRY" : "BEITRETEN"}
                 </button>
               </form>
             )}
-            <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500 dark:text-white/40 px-2 font-sans font-light">
+            <div className="mt-3 flex items-center justify-between text-xs text-neutral-600 dark:text-white/50 px-2 font-sans font-normal">
               <span>{isEn ? "Discretion assured · Zero spam" : "Diskretion garantiert · Kein Spam"}</span>
               <span>{isEn ? "Encrypted & Confidential" : "Verschlüsselt & vertraulich"}</span>
             </div>
@@ -125,14 +125,14 @@ export default function Footer({
               </span>
             </button>
 
-            <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light max-w-sm">
+            <p className="text-sm text-neutral-700 dark:text-[#a0a4ab] leading-relaxed font-sans font-normal max-w-sm">
               {isEn
                 ? "A harmonious sanctuary crafted at the intersection of timeless architecture, holistic wellness, and discreet exclusivity."
                 : "Ein harmonisches Refugium an der Schnittstelle von zeitloser Architektur, ganzheitlicher Wellness und diskreter Exklusivität."}
             </p>
 
             <div className="pt-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-[10px] font-mono text-neutral-700 dark:text-white/70">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-xs font-mono text-neutral-700 dark:text-white/70">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>LEED Platinum Certified · WELL Gold</span>
               </div>
@@ -141,10 +141,10 @@ export default function Footer({
 
           {/* Col 2: Section Quick Navigation (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <span className="font-editorial italic text-xs tracking-widest text-neutral-500 dark:text-white/60 block uppercase">
+            <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/60 block uppercase">
               {isEn ? "(EXPERIENCE)" : "(ERLEBNIS)"}
             </span>
-            <ul className="space-y-2.5 text-xs sm:text-[13px] font-sans font-light text-neutral-600 dark:text-[#9aa0a6]">
+            <ul className="space-y-3 text-sm font-sans font-normal text-neutral-700 dark:text-[#a0a4ab]">
               <li>
                 <button
                   onClick={() => onNavigateSection("hero")}
@@ -198,12 +198,12 @@ export default function Footer({
 
           {/* Col 3: Concierge & Sales Gallery (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <span className="font-editorial italic text-xs tracking-widest text-neutral-500 dark:text-white/60 block uppercase">
+            <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/60 block uppercase">
               {isEn ? "(INQUIRIES)" : "(ANFRAGEN)"}
             </span>
-            <div className="space-y-3 text-xs sm:text-[13px] font-sans font-light text-neutral-600 dark:text-[#9aa0a6] leading-relaxed">
+            <div className="space-y-3.5 text-sm font-sans font-normal text-neutral-700 dark:text-[#a0a4ab] leading-relaxed">
               <div>
-                <p className="text-neutral-900 dark:text-white/90 font-medium">
+                <p className="text-neutral-900 dark:text-white font-medium">
                   {isEn ? "Private Sales Gallery" : "Private Verkaufsgalerie"}
                 </p>
                 <p>740 Park Avenue / Avenue Montaigne</p>
@@ -211,16 +211,16 @@ export default function Footer({
               </div>
 
               <div>
-                <p className="text-neutral-900 dark:text-white/90 font-medium">{isEn ? "Direct Line" : "Direktkontakt"}</p>
-                <p className="font-mono text-neutral-700 dark:text-white/80">+1 (212) 555-0194</p>
-                <p className="font-mono text-neutral-700 dark:text-white/80">+49 30 8920 140</p>
+                <p className="text-neutral-900 dark:text-white font-medium">{isEn ? "Direct Line" : "Direktkontakt"}</p>
+                <p className="font-mono text-neutral-800 dark:text-white/80">+1 (212) 555-0194</p>
+                <p className="font-mono text-neutral-800 dark:text-white/80">+49 30 8920 140</p>
               </div>
 
               <div>
-                <p className="text-neutral-900 dark:text-white/90 font-medium">Concierge</p>
+                <p className="text-neutral-900 dark:text-white font-medium">Concierge</p>
                 <a
                   href="mailto:residences@elyse-living.com"
-                  className="text-neutral-900 dark:text-white hover:underline underline-offset-4 transition-colors"
+                  className="text-neutral-900 dark:text-white hover:underline underline-offset-4 transition-colors font-medium"
                 >
                   residences@elyse-living.com
                 </a>
@@ -230,18 +230,18 @@ export default function Footer({
 
           {/* Col 4: Private Consultation Action (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <span className="font-editorial italic text-xs tracking-widest text-neutral-500 dark:text-white/60 block uppercase">
+            <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/60 block uppercase">
               {isEn ? "(VISIT)" : "(BESUCH)"}
             </span>
             <div className="space-y-4">
-              <p className="text-xs text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light">
+              <p className="text-sm text-neutral-700 dark:text-[#a0a4ab] leading-relaxed font-sans font-normal">
                 {isEn
                   ? "Schedule a bespoke walkthrough with our private residential curator."
                   : "Vereinbaren Sie einen individuellen Rundgang mit unserem Kurator."}
               </p>
               <button
                 onClick={onBookVisit}
-                className="w-full bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all py-3 rounded-full text-xs font-semibold tracking-wider uppercase text-center shadow-lg cursor-pointer"
+                className="w-full bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase text-center shadow-lg cursor-pointer"
               >
                 {isEn ? "BOOK A VISIT" : "BESICHTIGUNG"}
               </button>
@@ -259,14 +259,14 @@ export default function Footer({
       </div>
 
       {/* 4. BOTTOM BAR / COPYRIGHT & COMPLIANCE */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 py-8 border-t border-black/10 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500 dark:text-white/50 font-sans font-light">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 py-8 border-t border-black/10 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600 dark:text-white/60 font-sans font-normal">
         {/* Left: Copyright */}
         <div>
           <span>© 2026 ELYSE LUXURY RESIDENCE HOLDINGS. {isEn ? "ALL RIGHTS RESERVED." : "ALLE RECHTE VORBEHALTEN."}</span>
         </div>
 
         {/* Center: Legal Links */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-mono text-[10px] text-neutral-400 dark:text-white/40">
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-mono text-[11px] sm:text-xs text-neutral-500 dark:text-white/50">
           <span className="hover:text-neutral-900 dark:hover:text-white/80 cursor-pointer transition-colors">
             {isEn ? "PRIVACY POLICY" : "DATENSCHUTZ"}
           </span>
@@ -288,7 +288,7 @@ export default function Footer({
         <div>
           <button
             onClick={scrollToTop}
-            className="group flex items-center gap-1.5 font-mono text-[11px] text-neutral-600 dark:text-white/70 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="group flex items-center gap-1.5 font-mono text-xs text-neutral-600 dark:text-white/70 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
           >
             <span>{isEn ? "BACK TO TOP" : "NACH OBEN"}</span>
             <span className="transition-transform duration-300 group-hover:-translate-y-1">↑</span>

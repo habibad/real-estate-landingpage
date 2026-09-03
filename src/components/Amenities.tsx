@@ -128,7 +128,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             {/* Narrative Description */}
             <LiveText
               text={t.description}
-              className="text-xs sm:text-[13px] md:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light max-w-md"
+              className="text-sm sm:text-base text-neutral-700 dark:text-[#a0a4ab] leading-relaxed font-sans font-normal max-w-md"
               delay={0.15}
               stagger={0.03}
             />
@@ -139,7 +139,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
                 {t.features.map((feature, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 text-xs sm:text-[13px] text-neutral-700 dark:text-white/80 font-sans font-light"
+                    className="flex items-center gap-3 text-sm sm:text-[15px] text-neutral-800 dark:text-white/90 font-sans font-normal"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-white/40 shrink-0" />
                     <LiveText text={feature} delay={0.25 + i * 0.08} stagger={0.025} />
@@ -152,7 +152,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             <div className="amenity-anim pt-3">
               <button
                 onClick={onLearnMore}
-                className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
+                className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
               >
                 {t.cta}
               </button>

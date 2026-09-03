@@ -76,7 +76,7 @@ export default function Navbar({
           <ThemeToggle />
 
           {/* Language Switcher */}
-          <div className="flex items-center text-[11px] sm:text-xs tracking-widest font-mono select-none">
+          <div className="flex items-center text-xs sm:text-[13px] tracking-widest font-mono select-none">
             <button
               onClick={() => setLang("en")}
               className={`transition-colors py-1 cursor-pointer ${
@@ -103,7 +103,7 @@ export default function Navbar({
           {/* Book A Visit Pill Button */}
           <button
             onClick={onBookVisit}
-            className="btn-pill-white text-[10px] sm:text-xs tracking-wider"
+            className="btn-pill-white tracking-wider"
           >
             {t.bookVisit}
           </button>

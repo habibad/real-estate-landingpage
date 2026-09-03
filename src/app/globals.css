@@ -200,11 +200,11 @@ html.light .hairline-top {
   background-color: #f3f4f6;
   color: #111111;
   font-family: var(--font-plus-jakarta), sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.45rem 1.1rem;
+  padding: 0.55rem 1.35rem;
   border-radius: 9999px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
@@ -245,11 +245,11 @@ html.light .btn-pill-white:hover {
   background: transparent;
   color: #ededed;
   font-family: var(--font-plus-jakarta), sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.45rem 1.1rem;
+  padding: 0.55rem 1.35rem;
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);

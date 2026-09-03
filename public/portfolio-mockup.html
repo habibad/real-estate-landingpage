@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+  <title>Fiverr Portfolio Cover - Elyse Luxury Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: #090a0c;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #ffffff;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Studio Background with Spotlight Gradients */
+    .studio-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 75% 45%, rgba(65, 120, 190, 0.18) 0%, rgba(0, 0, 0, 0) 55%),
+        radial-gradient(circle at 25% 30%, rgba(200, 165, 120, 0.14) 0%, rgba(0, 0, 0, 0) 50%),
+        radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 60%),
+        linear-gradient(135deg, #07080a 0%, #0d0f13 50%, #08090b 100%);
+      z-index: 1;
+    }
+
+    /* Subtle Grid Background Pattern */
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      z-index: 2;
+    }
+
+    /* Vignette Edge */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.85);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Main Container */
+    .artboard {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      padding: 70px 90px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Left Content Column */
+    .hero-info {
+      width: 620px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    /* Top Category Badge */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(16px);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      width: fit-content;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .pill-badge .sparkle {
+      color: #e5b974;
+      font-size: 14px;
+    }
+
+    .pill-badge span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f1f3f5;
+    }
+
+    /* Main Title */
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 68px;
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #dedede 60%, #b5b5b5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
+    }
+
+    .project-subtitle {
+      font-size: 21px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #cbd5e1;
+      margin-bottom: 34px;
+      letter-spacing: -0.01em;
+    }
+
+    .project-subtitle strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Value Proposition Features Checklist */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+
+    .feature-item .check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4ade80;
+      font-size: 11px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .feature-item span b {
+      color: #f8fafc;
+      font-weight: 600;
+    }
+
+    /* Technology Stack Badges */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .tech-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tech-pill::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      opacity: 0.6;
+    }
+
+    /* Seller Rating / Trust Guarantee */
+    .trust-footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stars {
+      color: #facc15;
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+
+    .trust-text {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+
+    /* Right Mockup Stage */
+    .mockup-stage {
+      position: relative;
+      width: 1100px;
+      height: 850px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ======================================================== */
+    /* 1. LAPTOP MOCKUP (MacBook Pro Space Gray / Clay) */
+    /* ======================================================== */
+    .laptop-wrapper {
+      position: absolute;
+      top: 75px;
+      left: 20px;
+      width: 940px;
+      z-index: 10;
+      filter: drop-shadow(0 35px 70px rgba(0, 0, 0, 0.75)) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+    }
+
+    /* Laptop Display Screen Lid */
+    .laptop-lid {
+      position: relative;
+      width: 940px;
+      height: 600px;
+      background: #1e2024;
+      border-radius: 24px 24px 6px 6px;
+      border: 3px solid #373b43;
+      padding: 14px 14px 20px 14px;
+      box-shadow: 
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Screen Bezel Camera */
+    .camera-notch {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0f1013;
+      border: 1px solid #24272e;
+    }
+
+    /* Browser Window Inside Laptop */
+    .browser-frame {
+      width: 100%;
+      height: 100%;
+      background: #f4f3f0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Chrome Address Bar */
+    .browser-nav {
+      height: 34px;
+      background: #e7e5e0;
+      border-bottom: 1px solid #d4d0c7;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 12px;
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 6px;
+    }
+
+    .traffic-lights span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .traffic-lights .c-red { background: #ff5f56; }
+    .traffic-lights .c-yellow { background: #ffbd2e; }
+    .traffic-lights .c-green { background: #27c93f; }
+
+    .address-bar {
+      flex: 1;
+      max-width: 380px;
+      margin: 0 auto;
+      height: 22px;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid #d4d0c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #4b5563;
+    }
+
+    .address-bar .lock {
+      font-size: 9px;
+      color: #10b981;
+    }
+
+    /* Screen Viewport Image */
+    .browser-viewport {
+      width: 100%;
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #f4f3f0;
+    }
+
+    .browser-viewport img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Laptop Base / Keyboard Deck */
+    .laptop-base {
+      position: relative;
+      width: 1040px;
+      height: 20px;
+      background: linear-gradient(180deg, #2c2f36 0%, #1e2024 70%, #141518 100%);
+      margin-left: -50px;
+      border-radius: 0 0 20px 20px;
+      border-top: 1px solid #4a4f5a;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .laptop-base::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 6px;
+      background: #18191d;
+      border-radius: 0 0 6px 6px;
+    }
+
+    /* ======================================================== */
+    /* 2. MOBILE MOCKUP (iPhone 15 Pro Titanium) */
+    /* ======================================================== */
+    .mobile-wrapper {
+      position: absolute;
+      bottom: 25px;
+      right: 0px;
+      width: 320px;
+      height: 650px;
+      z-index: 30;
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.85)) drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+    }
+
+    .mobile-phone {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #1a1b1f;
+      border-radius: 46px;
+      border: 4px solid #454952;
+      box-shadow: 
+        inset 0 0 0 2px #0f1013,
+        inset 0 0 0 3px rgba(255, 255, 255, 0.15),
+        0 0 0 1px #22242a;
+      padding: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Mobile Screen */
+    .mobile-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #f4f3f0;
+    }
+
+    /* Dynamic Island */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 96px;
+      height: 24px;
+      background: #000000;
+      border-radius: 20px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+
+    .camera-lens {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      margin-left: auto;
+    }
+
+    .mobile-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Mobile Floating Glow Badge */
+    .mobile-badge {
+      position: absolute;
+      top: -18px;
+      right: 18px;
+      background: rgba(18, 19, 22, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mobile-badge .dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    /* ======================================================== */
+    /* 3. FLOATING THEME TOGGLE CARD (Dark Mode Preview Card) */
+    /* ======================================================== */
+    .floating-card {
+      position: absolute;
+      bottom: 45px;
+      left: -20px;
+      width: 270px;
+      height: 180px;
+      background: rgba(20, 21, 26, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(20px);
+      border-radius: 18px;
+      padding: 12px;
+      z-index: 25;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .floating-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .floating-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theme-chip {
+      font-size: 9.5px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      color: #cbd5e1;
+    }
+
+    .floating-card-preview {
+      width: 100%;
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .floating-card-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Floating Badges Over Stage */
+    .floating-feature-tag {
+      position: absolute;
+      top: 40px;
+      right: 280px;
+      background: rgba(15, 17, 21, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      padding: 10px 20px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 35;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .floating-feature-tag span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .floating-feature-tag .spark {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Studio Lighting & Mesh Background -->
+  <div class="studio-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="vignette"></div>
+
+  <!-- Main Showcase Artboard -->
+  <div class="artboard">
+    
+    <!-- Left Column: High-Impact Fiverr Pitch Typography -->
+    <div class="hero-info">
+      <!-- Top Tag Badge -->
+      <div class="pill-badge">
+        <span class="sparkle">✦</span>
+        <span>HIGH-CONVERTING LANDING PAGE</span>
+      </div>
+
+      <!-- Main Project Title -->
+      <h1 class="project-title">ELYSE RESIDENCE</h1>
+      <p class="project-subtitle">
+        Ultra-Luxury <strong>Real Estate & Architecture</strong> Web Experience
+      </p>
+
+      <!-- Key Selling Features for Fiverr Clients -->
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="check-icon">✓</div>
+          <span><b>Aesthetic Architecture Design</b> with Editorial Typography</span>
+        </div>
+        <div class="feature-item">
+          <div class="check-icon">✓</div>
+          <span><b>Interactive GSAP 3D Animations</b> & Smooth Scroll scrub</span>
+        </div>
+        <div class="feature-item">
+          <div class="check-icon">✓</div>
+          <span><b>Dual Dark & Light Mode</b> with Dynamic Color Contrast</span>
+        </div>
+        <div class="feature-item">
+          <div class="check-icon">✓</div>
+          <span><b>100% Fluid Responsive</b> for Desktop, Tablet & Mobile</span>
+        </div>
+        <div class="feature-item">
+          <div class="check-icon">✓</div>
+          <span><b>Multi-Language Support</b> (EN / DE) + Interactive Booking Modals</span>
+        </div>
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div class="tech-stack">
+        <div class="tech-pill">Next.js 15</div>
+        <div class="tech-pill">Tailwind CSS</div>
+        <div class="tech-pill">TypeScript</div>
+        <div class="tech-pill">GSAP ScrollTrigger</div>
+        <div class="tech-pill">Lenis Smooth Scroll</div>
+      </div>
+
+      <!-- Trust Stamp & Quality Assurance -->
+      <div class="trust-footer">
+        <div class="stars">★★★★★</div>
+        <div class="trust-text">TOP TIER PORTFOLIO STANDARD · PIXEL PERFECT UI/UX</div>
+      </div>
+    </div>
+
+    <!-- Right Column: 3D Dual-Device Mockup Stage -->
+    <div class="mockup-stage">
+      
+      <!-- Top Floating Highlight Badge -->
+      <div class="floating-feature-tag">
+        <span class="spark">⚡</span>
+        <span>100/100 SPEED & PERFORMANCE</span>
+      </div>
+
+      <!-- 1. MacBook Pro Laptop Mockup (Desktop View) -->
+      <div class="laptop-wrapper">
+        <div class="laptop-lid">
+          <div class="camera-notch"></div>
+          
+          <!-- Browser Frame -->
+          <div class="browser-frame">
+            <div class="browser-nav">
+              <div class="traffic-lights">
+                <span class="c-red"></span>
+                <span class="c-yellow"></span>
+                <span class="c-green"></span>
+              </div>
+              <div class="address-bar">
+                <span class="lock">🔒</span>
+                <span>elyse-residence.com</span>
+              </div>
+            </div>
+            
+            <!-- Real Desktop Screenshot -->
+            <div class="browser-viewport">
+              <img src="/mockup/desktop_hero_light.png" alt="Elyse Desktop Landing Page">
+            </div>
+          </div>
+        </div>
+
+        <!-- Laptop Aluminum Base -->
+        <div class="laptop-base"></div>
+      </div>
+
+      <!-- 2. iPhone 15 Pro Floating Mockup (Mobile Responsive View) -->
+      <div class="mobile-wrapper">
+        <div class="mobile-badge">
+          <span class="dot"></span>
+          <span>MOBILE RESPONSIVE</span>
+        </div>
+
+        <div class="mobile-phone">
+          <div class="mobile-screen">
+            <div class="dynamic-island">
+              <div class="camera-lens"></div>
+            </div>
+            <!-- Real Mobile Screenshot -->
+            <img src="/mockup/mobile_hero_light.png" alt="Elyse Mobile Experience">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Dark Mode Floating Preview Card -->
+      <div class="floating-card">
+        <div class="floating-card-header">
+          <div class="floating-card-title">
+            <span>🌓 Dark Mode</span>
+          </div>
+          <div class="theme-chip">NIGHT VILLA</div>
+        </div>
+        <div class="floating-card-preview">
+          <img src="/mockup/desktop_hero_dark.png" alt="Elyse Dark Mode Architectural Experience">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

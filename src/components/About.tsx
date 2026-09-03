@@ -141,14 +141,14 @@ export default function About({ lang, onLearnMore }: AboutProps) {
           <div className="md:col-span-4 flex flex-col justify-center space-y-6 lg:pl-4">
             <LiveText
               text={t.paragraph1}
-              className="text-xs sm:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans-clean"
+              className="text-sm sm:text-base text-neutral-700 dark:text-[#9aa0a6] leading-relaxed font-sans-clean"
               delay={0.1}
               stagger={0.03}
             />
 
             <LiveText
               text={t.paragraph2}
-              className="text-xs sm:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans-clean"
+              className="text-sm sm:text-base text-neutral-700 dark:text-[#9aa0a6] leading-relaxed font-sans-clean"
               delay={0.25}
               stagger={0.03}
             />

@@ -101,14 +101,14 @@ export default function Hero({ lang, onScrollDown }: HeroProps) {
           <div className="lg:col-span-4 flex flex-col justify-end pb-2 sm:pb-4 lg:pl-6 space-y-3">
             <AnimatedTitle
               as="h2"
-              className="font-editorial italic text-base sm:text-lg text-neutral-900 dark:text-white/90 tracking-wide font-normal"
+              className="font-editorial italic text-lg sm:text-xl lg:text-2xl text-neutral-900 dark:text-white/90 tracking-wide font-normal"
               delay={0.15}
             >
               {t.tagline}
             </AnimatedTitle>
             <LiveText
               text={t.description}
-              className="text-xs sm:text-[13px] text-neutral-700 dark:text-[#9aa0a6] leading-relaxed font-sans-clean max-w-md font-normal"
+              className="text-sm sm:text-base text-neutral-700 dark:text-[#9aa0a6] leading-relaxed font-sans-clean max-w-md font-normal"
               delay={0.25}
               stagger={0.035}
             />
@@ -123,7 +123,7 @@ export default function Hero({ lang, onScrollDown }: HeroProps) {
             className="group flex flex-col items-center gap-2 text-neutral-700 dark:text-white/60 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer focus:outline-none"
             aria-label="Scroll Down to Manifesto"
           >
-            <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-neutral-700 dark:text-white/60 group-hover:text-neutral-900 dark:group-hover:text-white font-medium">
+            <span className="text-xs tracking-[0.25em] font-mono uppercase text-neutral-700 dark:text-white/60 group-hover:text-neutral-900 dark:group-hover:text-white font-medium">
               {t.scroll}
             </span>
             <div className="w-[1px] h-9 bg-neutral-900/20 dark:bg-white/20 relative overflow-hidden">

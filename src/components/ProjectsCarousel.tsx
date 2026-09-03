@@ -555,9 +555,9 @@ export default function ProjectsCarousel({
 
       {/* 3. FIXED MIDDLE BOTTOM CONTENT STAGE: Live description word typing & CTA button */}
       <div className="relative z-20 w-full px-6 flex items-center justify-center shrink-0">
-        <div className="max-w-[460px] w-full flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-center sm:text-left">
+        <div className="max-w-[540px] w-full flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-center sm:text-left">
           {/* Live Description Stage: Scroll-scrubbed word typing */}
-          <div className="relative w-full max-w-xs sm:max-w-sm min-h-[48px] flex items-center overflow-hidden">
+          <div className="relative w-full max-w-sm sm:max-w-md min-h-[56px] flex items-center overflow-hidden">
             {t.items.map((project, idx) => {
               const text = project.subtitle || project.description;
               const words = text.split(/\s+/).filter(Boolean);
@@ -566,7 +566,7 @@ export default function ProjectsCarousel({
                   key={project.id}
                   className="absolute inset-0 flex items-center pointer-events-none"
                 >
-                  <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light">
+                  <p className="text-sm sm:text-[15px] text-neutral-700 dark:text-[#a0a4ab] leading-relaxed font-sans font-normal">
                     {words.map((word, wIdx) => (
                       <span
                         key={wIdx}
@@ -590,7 +590,7 @@ export default function ProjectsCarousel({
           <div className="shrink-0">
             <button
               onClick={() => onSelectProject(activeProject)}
-              className="btn-pill-white text-[10px] sm:text-xs"
+              className="btn-pill-white tracking-wider"
             >
               {t.cta}
             </button>

@@ -75,7 +75,7 @@ export default function Metrics({ lang }: MetricsProps) {
               </div>
               <LiveText
                 text={t.greenSpaces.label}
-                className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-[200px] leading-relaxed"
+                className="text-sm sm:text-[15px] text-neutral-600 dark:text-[#a0a4ab] font-sans-clean max-w-[220px] leading-relaxed"
                 delay={0.1}
                 stagger={0.03}
               />
@@ -90,7 +90,7 @@ export default function Metrics({ lang }: MetricsProps) {
               </div>
               <LiveText
                 text={t.residences.label}
-                className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-[220px] leading-relaxed"
+                className="text-sm sm:text-[15px] text-neutral-600 dark:text-[#a0a4ab] font-sans-clean max-w-[240px] leading-relaxed"
                 delay={0.15}
                 stagger={0.03}
               />
@@ -109,7 +109,7 @@ export default function Metrics({ lang }: MetricsProps) {
             </div>
             <LiveText
               text={t.livingSpace.label}
-              className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-[260px] leading-relaxed mt-2"
+              className="text-sm sm:text-[15px] text-neutral-600 dark:text-[#a0a4ab] font-sans-clean max-w-[280px] leading-relaxed mt-2"
               delay={0.1}
               stagger={0.03}
             />
@@ -123,7 +123,7 @@ export default function Metrics({ lang }: MetricsProps) {
               </div>
               <LiveText
                 text={t.concierge.label}
-                className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-sm mx-auto leading-relaxed"
+                className="text-sm sm:text-[15px] text-neutral-600 dark:text-[#a0a4ab] font-sans-clean max-w-sm mx-auto leading-relaxed"
                 delay={0.1}
                 stagger={0.03}
               />
