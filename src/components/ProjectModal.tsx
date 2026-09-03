@@ -67,7 +67,7 @@ export default function ProjectModal({
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141518] via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
           {/* Title Overlay */}
           <div className="absolute bottom-6 left-6 right-6">

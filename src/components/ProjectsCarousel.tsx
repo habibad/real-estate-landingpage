@@ -505,11 +505,13 @@ export default function ProjectsCarousel({
                   key={project.id}
                   className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none"
                 >
-                  <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-normal tracking-[0.04em] text-neutral-900 dark:text-white uppercase leading-[0.88] drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_12px_24px_rgba(0,0,0,0.95)] text-center w-full">
-                    <span className="block text-center w-full">
+                  <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-normal tracking-[0.04em] uppercase leading-[0.88] text-center w-full select-none">
+                    {/* Line 1: Above the card, sits on the cream background in light mode */}
+                    <span className="block text-center w-full text-neutral-900 dark:text-white drop-shadow-none dark:drop-shadow-[0_12px_24px_rgba(0,0,0,0.95)]">
                       {renderLineChars(l1, `p${idx}-title-char`)}
                     </span>
-                    <span className="block text-center w-full -mt-1 sm:-mt-2">
+                    {/* Line 2: Over the dark card image, bright white text with deep shadow */}
+                    <span className="block text-center w-full -mt-1 sm:-mt-2 text-white dark:text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
                       {renderLineChars(l2, `p${idx}-title-char`)}
                     </span>
                   </h2>
@@ -543,7 +545,8 @@ export default function ProjectsCarousel({
                 priority={idx === 1}
                 className="object-cover object-center"
               />
-              {/* Subtle glass reflection overlay */}
+              {/* Top and bottom architectural vignettes to guarantee white text contrast in all modes */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/35 pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5 pointer-events-none" />
             </div>
           ))}

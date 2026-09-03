@@ -231,6 +231,16 @@ html.light .btn-pill-white:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Split title dual-tone clip: top image on mobile, left 50% image on desktop */
+.clip-split-image {
+  clip-path: polygon(0 0, 100% 0, 100% 50vh, 0 50vh);
+}
+@media (min-width: 1024px) {
+  .clip-split-image {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  }
+}
+
 .btn-pill-outline {
   background: transparent;
   color: #ededed;

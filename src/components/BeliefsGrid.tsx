@@ -186,7 +186,8 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
           </div>
         </div>
 
-        {/* 3. Immense Overlapping Title: Spanning across the 50% split boundary (Image + Dark side) */}
+        {/* 3. Immense Overlapping Title: Dual-tone split across the 50% image/background boundary */}
+        {/* Base Layer: Dark in Light Mode (for the right background), White in Dark Mode */}
         <div className="absolute z-20 top-[28%] sm:top-[30%] lg:top-[32%] left-6 sm:left-12 lg:left-[31vw] xl:left-[33vw] pointer-events-none select-none max-w-[92vw] lg:max-w-[65vw]">
           <AnimatedTitle
             as="h2"
@@ -201,6 +202,28 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
               {lang === "de" ? "INSPIRIERTEM WOHNEN" : "INSPIRED LIVING"}
             </span>
           </AnimatedTitle>
+        </div>
+
+        {/* Clipped Overlay Layer: White text strictly over the image area in Light Mode */}
+        <div
+          className="absolute z-20 inset-0 pointer-events-none select-none overflow-hidden clip-split-image dark:hidden"
+          aria-hidden="true"
+        >
+          <div className="absolute top-[28%] sm:top-[30%] lg:top-[32%] left-6 sm:left-12 lg:left-[31vw] xl:left-[33vw] max-w-[92vw] lg:max-w-[65vw]">
+            <AnimatedTitle
+              as="h2"
+              className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.2rem] 2xl:text-[7rem] font-normal uppercase text-white leading-[0.88] tracking-[0.03em] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] text-left"
+              yOffset={60}
+              duration={0.95}
+            >
+              <span className="block">
+                {lang === "de" ? "EINE VISION VON" : "A VISION OF"}
+              </span>
+              <span className="block mt-1 sm:mt-2">
+                {lang === "de" ? "INSPIRIERTEM WOHNEN" : "INSPIRED LIVING"}
+              </span>
+            </AnimatedTitle>
+          </div>
         </div>
       </div>
 
