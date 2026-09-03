@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import LiveText from "@/components/LiveText";
 
 interface FooterProps {
   lang: "en" | "de";
@@ -37,19 +39,33 @@ export default function Footer({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left: Private Registry Headline */}
           <div className="lg:col-span-6 space-y-3">
-            <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/60">
+            <AnimatedTitle
+              as="span"
+              className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/60 block"
+              yOffset={20}
+            >
               {isEn ? "(PRIVATE REGISTRY)" : "(PRIVATES REGISTER)"}
-            </span>
-            <h3 className="font-editorial text-2xl sm:text-3xl md:text-4xl text-white font-normal leading-tight tracking-wide">
+            </AnimatedTitle>
+            <AnimatedTitle
+              as="h3"
+              className="font-editorial text-2xl sm:text-3xl md:text-4xl text-white font-normal leading-tight tracking-wide"
+              yOffset={35}
+              delay={0.1}
+            >
               {isEn
                 ? "Receive Off-Market Architectural Releases & Private Portfolios."
                 : "Erhalten Sie vertrauliche Exposés und Off-Market-Veröffentlichungen."}
-            </h3>
-            <p className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans font-light leading-relaxed max-w-lg">
-              {isEn
-                ? "Join our invitation-only journal detailing bespoke finishes, floorplan previews, and private viewing receptions."
-                : "Treten Sie unserem exklusiven Journal bei für Einblicke in Maßanfertigungen, Grundrisse und private Empfänge."}
-            </p>
+            </AnimatedTitle>
+            <LiveText
+              text={
+                isEn
+                  ? "Join our invitation-only journal detailing bespoke finishes, floorplan previews, and private viewing receptions."
+                  : "Treten Sie unserem exklusiven Journal bei für Einblicke in Maßanfertigungen, Grundrisse und private Empfänge."
+              }
+              className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans font-light leading-relaxed max-w-lg"
+              delay={0.15}
+              stagger={0.03}
+            />
           </div>
 
           {/* Right: Elegant Email Input Form */}

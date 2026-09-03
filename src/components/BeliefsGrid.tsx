@@ -4,6 +4,8 @@ import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT } from "@/data/siteData";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import LiveText from "@/components/LiveText";
 
 interface BeliefsGridProps {
   lang: "en" | "de";
@@ -49,12 +51,19 @@ function NotchedCard({
 
       {/* Card Typography & Inner Content */}
       <div className="relative z-20 flex flex-col justify-center items-center space-y-3 sm:space-y-4 max-w-[210px] sm:max-w-[230px]">
-        <h3 className="font-editorial italic text-lg sm:text-xl md:text-2xl text-white font-normal uppercase leading-snug tracking-wide drop-shadow-md">
+        <AnimatedTitle
+          as="h3"
+          className="font-editorial italic text-lg sm:text-xl md:text-2xl text-white font-normal uppercase leading-snug tracking-wide drop-shadow-md"
+          yOffset={25}
+        >
           {title}
-        </h3>
-        <p className="text-xs sm:text-[13px] text-white/80 font-sans font-light leading-relaxed">
-          {description}
-        </p>
+        </AnimatedTitle>
+        <LiveText
+          text={description}
+          className="text-xs sm:text-[13px] text-white/80 font-sans font-light leading-relaxed"
+          delay={0.1}
+          stagger={0.03}
+        />
         {children}
       </div>
     </div>
@@ -147,17 +156,24 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
         {/* 2. Right Side: Deep Black Background with Aligned Content (50% Width on Desktop) */}
         <div className="relative w-full lg:w-1/2 bg-[#0c0d0e] flex flex-col justify-between py-12 sm:py-16 lg:py-20 px-8 sm:px-12 lg:px-16 xl:px-20 min-h-[380px] lg:min-h-screen">
           {/* Top: (OUR BELIEFS) Tag - Aligned on vertical guide line */}
-          <div className="pt-2 animate-intro">
-            <span className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-white/90">
+          <div className="pt-2">
+            <AnimatedTitle
+              as="span"
+              className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-white/90 block"
+              yOffset={20}
+            >
               {t.tag}
-            </span>
+            </AnimatedTitle>
           </div>
 
           {/* Bottom: Paragraph & [ BOOK A VISIT ] Button - Aligned on same vertical guide line */}
-          <div className="pb-4 space-y-6 max-w-md animate-intro">
-            <p className="text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light">
-              {t.subHeadline}
-            </p>
+          <div className="pb-4 space-y-6 max-w-md">
+            <LiveText
+              text={t.subHeadline}
+              className="text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light"
+              delay={0.1}
+              stagger={0.03}
+            />
 
             <div>
               <button
@@ -172,14 +188,19 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
 
         {/* 3. Immense Overlapping Title: Spanning across the 50% split boundary (Image + Dark side) */}
         <div className="absolute z-20 top-[28%] sm:top-[30%] lg:top-[32%] left-6 sm:left-12 lg:left-[31vw] xl:left-[33vw] pointer-events-none select-none max-w-[92vw] lg:max-w-[65vw]">
-          <h2 className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.2rem] 2xl:text-[7rem] font-normal uppercase text-white leading-[0.88] tracking-[0.03em] drop-shadow-[0_12px_28px_rgba(0,0,0,0.95)] text-left">
-            <span className="block animate-intro">
+          <AnimatedTitle
+            as="h2"
+            className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.2rem] 2xl:text-[7rem] font-normal uppercase text-white leading-[0.88] tracking-[0.03em] drop-shadow-[0_12px_28px_rgba(0,0,0,0.95)] text-left"
+            yOffset={60}
+            duration={0.95}
+          >
+            <span className="block">
               {lang === "de" ? "EINE VISION VON" : "A VISION OF"}
             </span>
-            <span className="block animate-intro mt-1 sm:mt-2">
+            <span className="block mt-1 sm:mt-2">
               {lang === "de" ? "INSPIRIERTEM WOHNEN" : "INSPIRED LIVING"}
             </span>
-          </h2>
+          </AnimatedTitle>
         </div>
       </div>
 
@@ -259,12 +280,18 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
 
             {/* ROW 1 - ITEM 6: Top-Right Philosophy Text -> Col 10 to 12 */}
             <div className="bento-item lg:col-span-3 flex flex-col justify-start space-y-6 text-right max-w-sm ml-auto pt-2">
-              <p className="text-xs sm:text-[13px] text-white/90 leading-relaxed font-sans font-light">
-                {t.narrative1}
-              </p>
-              <p className="text-xs sm:text-[13px] text-white/70 leading-relaxed font-sans font-light">
-                {t.narrative2}
-              </p>
+              <LiveText
+                text={t.narrative1}
+                className="text-xs sm:text-[13px] text-white/90 leading-relaxed font-sans font-light"
+                delay={0.1}
+                stagger={0.03}
+              />
+              <LiveText
+                text={t.narrative2}
+                className="text-xs sm:text-[13px] text-white/70 leading-relaxed font-sans font-light"
+                delay={0.25}
+                stagger={0.03}
+              />
             </div>
 
             {/* ROW 2 - ITEM 3: Card 3 (Cultural Enrichment) -> Col 1 to 3 */}

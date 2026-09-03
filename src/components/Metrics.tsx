@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT } from "@/data/siteData";
+import LiveText from "@/components/LiveText";
 
 interface MetricsProps {
   lang: "en" | "de";
@@ -72,9 +73,12 @@ export default function Metrics({ lang }: MetricsProps) {
                   {t.greenSpaces.unit}
                 </span>
               </div>
-              <p className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[200px] leading-relaxed">
-                {t.greenSpaces.label}
-              </p>
+              <LiveText
+                text={t.greenSpaces.label}
+                className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[200px] leading-relaxed"
+                delay={0.1}
+                stagger={0.03}
+              />
             </div>
 
             {/* Metric: Residences */}
@@ -84,9 +88,12 @@ export default function Metrics({ lang }: MetricsProps) {
                   {residences}
                 </span>
               </div>
-              <p className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[220px] leading-relaxed">
-                {t.residences.label}
-              </p>
+              <LiveText
+                text={t.residences.label}
+                className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[220px] leading-relaxed"
+                delay={0.15}
+                stagger={0.03}
+              />
             </div>
           </div>
 
@@ -100,9 +107,12 @@ export default function Metrics({ lang }: MetricsProps) {
                 {t.livingSpace.unit}
               </span>
             </div>
-            <p className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[260px] leading-relaxed mt-2">
-              {t.livingSpace.label}
-            </p>
+            <LiveText
+              text={t.livingSpace.label}
+              className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[260px] leading-relaxed mt-2"
+              delay={0.1}
+              stagger={0.03}
+            />
           </div>
 
           {/* Bottom Row: 24/7 Concierge (Center Aligned) */}
@@ -111,9 +121,12 @@ export default function Metrics({ lang }: MetricsProps) {
               <div className="font-editorial text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] text-white font-normal leading-none tracking-tight">
                 {t.concierge.value}
               </div>
-              <p className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-sm mx-auto leading-relaxed">
-                {t.concierge.label}
-              </p>
+              <LiveText
+                text={t.concierge.label}
+                className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-sm mx-auto leading-relaxed"
+                delay={0.1}
+                stagger={0.03}
+              />
             </div>
           </div>
         </div>

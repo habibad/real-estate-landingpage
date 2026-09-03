@@ -5,6 +5,9 @@ import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT } from "@/data/siteData";
 
+import AnimatedTitle from "@/components/AnimatedTitle";
+import LiveText from "@/components/LiveText";
+
 interface HeroProps {
   lang: "en" | "de";
   onBookVisit: () => void;
@@ -14,7 +17,6 @@ interface HeroProps {
 export default function Hero({ lang, onScrollDown }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const copyRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLButtonElement>(null);
 
   const t = SITE_CONTENT[lang].hero;
@@ -30,19 +32,12 @@ export default function Hero({ lang, onScrollDown }: HeroProps) {
         titleRef.current,
         { opacity: 0, y: 40, scale: 0.96 },
         { opacity: 1, y: 0, scale: 1, duration: 1.4, delay: 0.2 }
-      )
-        .fromTo(
-          copyRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 1.0 },
-          "-=0.8"
-        )
-        .fromTo(
-          scrollIndicatorRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.8 },
-          "-=0.6"
-        );
+      ).fromTo(
+        scrollIndicatorRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8 },
+        "-=0.6"
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -86,16 +81,20 @@ export default function Hero({ lang, onScrollDown }: HeroProps) {
           </div>
 
           {/* Right-Aligned Sub-copy Box */}
-          <div
-            ref={copyRef}
-            className="lg:col-span-4 flex flex-col justify-end pb-2 sm:pb-4 lg:pl-6 space-y-3"
-          >
-            <h2 className="font-editorial italic text-base sm:text-lg text-white/90 tracking-wide">
+          <div className="lg:col-span-4 flex flex-col justify-end pb-2 sm:pb-4 lg:pl-6 space-y-3">
+            <AnimatedTitle
+              as="h2"
+              className="font-editorial italic text-base sm:text-lg text-white/90 tracking-wide"
+              delay={0.15}
+            >
               {t.tagline}
-            </h2>
-            <p className="text-xs sm:text-[13px] text-[#9aa0a6] leading-relaxed font-sans-clean max-w-md">
-              {t.description}
-            </p>
+            </AnimatedTitle>
+            <LiveText
+              text={t.description}
+              className="text-xs sm:text-[13px] text-[#9aa0a6] leading-relaxed font-sans-clean max-w-md"
+              delay={0.25}
+              stagger={0.035}
+            />
           </div>
         </div>
 

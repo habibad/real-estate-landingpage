@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { SITE_CONTENT, ProjectData } from "@/data/siteData";
+import AnimatedTitle from "@/components/AnimatedTitle";
 
 interface ProjectsCarouselProps {
   lang: "en" | "de";
@@ -290,9 +291,13 @@ export default function ProjectsCarousel({
     >
       {/* 1. TOP HEADER BAR: (OUR PROJECTS) on Left, (1)  (2)  (3) on Right */}
       <div className="relative z-40 w-full px-8 sm:px-12 md:px-16 flex items-center justify-between shrink-0">
-        <span className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-white/90">
+        <AnimatedTitle
+          as="span"
+          className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-white/90 block"
+          yOffset={20}
+        >
           {t.tag}
-        </span>
+        </AnimatedTitle>
 
         {/* Step Indicators */}
         <div className="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm font-editorial tracking-widest">

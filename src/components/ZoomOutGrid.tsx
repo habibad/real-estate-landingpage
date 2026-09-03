@@ -2,8 +2,10 @@
 
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT, ProjectData } from "@/data/siteData";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import LiveText from "@/components/LiveText";
 
 interface ZoomOutGridProps {
   lang: "en" | "de";
@@ -74,13 +76,17 @@ export default function ZoomOutGrid({
         className="relative z-30 max-w-[1400px] w-full mx-auto px-6 flex items-center justify-between pointer-events-auto"
       >
         <div className="flex items-center gap-3">
-          <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70">
+          <AnimatedTitle
+            as="span"
+            className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 block"
+            yOffset={20}
+          >
             {t.zoomOut.tag}
-          </span>
+          </AnimatedTitle>
         </div>
 
         <div className="text-[11px] sm:text-xs text-white/50 font-mono tracking-widest uppercase hidden md:block">
-          {t.zoomOut.instruction}
+          <LiveText text={t.zoomOut.instruction} delay={0.1} stagger={0.03} />
         </div>
 
         <button onClick={onBookVisit} className="btn-pill-white !text-[10px] !py-2 !px-4">

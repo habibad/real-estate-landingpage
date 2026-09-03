@@ -2,8 +2,10 @@
 
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT } from "@/data/siteData";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import LiveText from "@/components/LiveText";
 
 interface AboutProps {
   lang: "en" | "de";
@@ -12,10 +14,9 @@ interface AboutProps {
 
 export default function About({ lang, onLearnMore }: AboutProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const imageCardRef = useRef<HTMLDivElement>(null);
   const imageInnerRef = useRef<HTMLDivElement>(null);
-  const rightTextRef = useRef<HTMLDivElement>(null);
 
   const t = SITE_CONTENT[lang].about;
 
@@ -23,6 +24,33 @@ export default function About({ lang, onLearnMore }: AboutProps) {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Height expansion and upward glide animation when scrolling from Hero into About
+      if (imageCardRef.current) {
+        gsap.fromTo(
+          imageCardRef.current,
+          {
+            clipPath: "inset(100% 0% 0% 0%)",
+            y: 90,
+            opacity: 0,
+            scale: 0.94,
+          },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.3,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 72%",
+              end: "bottom 15%",
+              toggleActions: "play reverse play reverse",
+            },
+          }
+        );
+      }
+
       // Parallax upward drift for the central image on scroll
       if (imageInnerRef.current) {
         gsap.fromTo(
@@ -37,43 +65,6 @@ export default function About({ lang, onLearnMore }: AboutProps) {
               start: "top bottom",
               end: "bottom top",
               scrub: 1,
-            },
-          }
-        );
-      }
-
-      // Smooth subtle text parallax reveal
-      if (headlineRef.current) {
-        gsap.fromTo(
-          headlineRef.current,
-          { opacity: 0.6, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 75%",
-              end: "top 30%",
-              scrub: 0.8,
-            },
-          }
-        );
-      }
-
-      if (rightTextRef.current) {
-        gsap.fromTo(
-          rightTextRef.current,
-          { opacity: 0.5, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 70%",
-              end: "top 35%",
-              scrub: 0.8,
             },
           }
         );
@@ -94,20 +85,25 @@ export default function About({ lang, onLearnMore }: AboutProps) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Tag and Editorial Headline */}
           <div className="md:col-span-4 flex flex-col justify-between h-full space-y-12">
-            <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70">
+            <AnimatedTitle
+              as="span"
+              className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 block"
+              yOffset={25}
+            >
               {t.tag}
-            </span>
+            </AnimatedTitle>
 
-            <h2
-              ref={headlineRef}
+            <AnimatedTitle
+              as="h2"
               className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-normal tracking-wide text-white uppercase leading-[1.08] drop-shadow-sm"
+              delay={0.12}
             >
               {t.headline.map((line, idx) => (
                 <span key={idx} className="block">
                   {line}
                 </span>
               ))}
-            </h2>
+            </AnimatedTitle>
           </div>
 
           {/* Center Column: Vertical Architectural Render with Parallax */}
@@ -115,7 +111,10 @@ export default function About({ lang, onLearnMore }: AboutProps) {
             ref={imageContainerRef}
             className="md:col-span-4 flex justify-center items-center py-4"
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a]">
+            <div
+              ref={imageCardRef}
+              className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] will-change-transform"
+            >
               <div ref={imageInnerRef} className="relative w-full h-[120%] -top-[10%]">
                 <Image
                   src="/images/about-living-v2.jpg"
@@ -129,17 +128,20 @@ export default function About({ lang, onLearnMore }: AboutProps) {
           </div>
 
           {/* Right Column: Descriptive Manifesto & CTA */}
-          <div
-            ref={rightTextRef}
-            className="md:col-span-4 flex flex-col justify-center space-y-6 lg:pl-4"
-          >
-            <p className="text-xs sm:text-sm text-[#9aa0a6] leading-relaxed font-sans-clean">
-              {t.paragraph1}
-            </p>
+          <div className="md:col-span-4 flex flex-col justify-center space-y-6 lg:pl-4">
+            <LiveText
+              text={t.paragraph1}
+              className="text-xs sm:text-sm text-[#9aa0a6] leading-relaxed font-sans-clean"
+              delay={0.1}
+              stagger={0.03}
+            />
 
-            <p className="text-xs sm:text-sm text-[#9aa0a6] leading-relaxed font-sans-clean">
-              {t.paragraph2}
-            </p>
+            <LiveText
+              text={t.paragraph2}
+              className="text-xs sm:text-sm text-[#9aa0a6] leading-relaxed font-sans-clean"
+              delay={0.25}
+              stagger={0.03}
+            />
 
             <div className="pt-2">
               <button onClick={onLearnMore} className="btn-pill-white">

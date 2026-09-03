@@ -4,6 +4,8 @@ import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/gsap";
 import { SITE_CONTENT } from "@/data/siteData";
+import AnimatedTitle from "@/components/AnimatedTitle";
+import LiveText from "@/components/LiveText";
 
 interface AmenitiesProps {
   lang: "en" | "de";
@@ -12,7 +14,6 @@ interface AmenitiesProps {
 
 export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const leftColRef = useRef<HTMLDivElement>(null);
   const centerCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
 
@@ -22,41 +23,6 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const textItems = leftColRef.current?.querySelectorAll(".amenity-anim");
-      if (textItems && textItems.length > 0) {
-        // ENTRANCE: Exactly matching BeliefsGrid timing (top 75% to top 35%)
-        gsap.fromTo(
-          textItems,
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 75%",
-              end: "top 35%",
-              scrub: 0.8,
-            },
-          }
-        );
-
-        // EXIT: Dissolves into invisible only when scrolling past section into next section
-        gsap.to(textItems, {
-          opacity: 0,
-          y: -35,
-          stagger: 0.05,
-          ease: "power2.in",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "bottom 60%",
-            end: "bottom 15%",
-            scrub: 0.8,
-          },
-        });
-      }
-
       // Center Card (Fitness Suite): Staggered entrance & exit matching BeliefsGrid cards
       if (centerCardRef.current) {
         gsap.fromTo(
@@ -137,37 +103,46 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Tag, Headline, Narrative, Feature Points & CTA */}
-          <div
-            ref={leftColRef}
-            className="lg:col-span-5 flex flex-col justify-center space-y-7"
-          >
+          <div className="lg:col-span-5 flex flex-col justify-center space-y-7">
             {/* Tag */}
-            <div className="amenity-anim">
-              <span className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 uppercase">
+            <div>
+              <AnimatedTitle
+                as="span"
+                className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 uppercase block"
+                yOffset={20}
+              >
                 {t.tag || "(WELLNESS & AMENITIES)"}
-              </span>
+              </AnimatedTitle>
             </div>
 
             {/* Headline */}
-            <h2 className="amenity-anim font-editorial text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-white uppercase leading-[1.06] drop-shadow-md">
+            <AnimatedTitle
+              as="h2"
+              className="font-editorial text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-white uppercase leading-[1.06] drop-shadow-md"
+              yOffset={45}
+              delay={0.1}
+            >
               {t.headline}
-            </h2>
+            </AnimatedTitle>
 
             {/* Narrative Description */}
-            <p className="amenity-anim text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light max-w-md">
-              {t.description}
-            </p>
+            <LiveText
+              text={t.description}
+              className="text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light max-w-md"
+              delay={0.15}
+              stagger={0.03}
+            />
 
             {/* Curated Amenity Highlights */}
             {t.features && (
-              <div className="amenity-anim pt-1 space-y-2.5 border-l border-white/15 pl-4 sm:pl-5">
+              <div className="pt-1 space-y-2.5 border-l border-white/15 pl-4 sm:pl-5">
                 {t.features.map((feature, i) => (
                   <div
                     key={i}
                     className="flex items-center gap-3 text-xs sm:text-[13px] text-white/80 font-sans font-light"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
-                    <span>{feature}</span>
+                    <LiveText text={feature} delay={0.25 + i * 0.08} stagger={0.025} />
                   </div>
                 ))}
               </div>
