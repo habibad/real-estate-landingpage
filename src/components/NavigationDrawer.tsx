@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { X, ArrowUpRight, Compass, Shield, Sparkles, MapPin, Mail, Phone } from "lucide-react";
+import { X, ArrowUpRight, MapPin, Mail } from "lucide-react";
 import { gsap } from "@/lib/gsap";
+import { useScrollLock } from "@/components/SmoothScrollProvider";
 
 interface NavigationDrawerProps {
   isOpen: boolean;
@@ -21,14 +22,25 @@ export default function NavigationDrawer({
   lang = "en",
   setLang,
 }: NavigationDrawerProps) {
+  useScrollLock(isOpen);
   const drawerRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (!drawerRef.current) return;
 
     if (isOpen) {
-      document.body.style.overflow = "hidden";
       gsap.fromTo(
         drawerRef.current,
         { opacity: 0, y: -20 },
@@ -41,8 +53,6 @@ export default function NavigationDrawer({
           { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power3.out", delay: 0.1 }
         );
       }
-    } else {
-      document.body.style.overflow = "";
     }
   }, [isOpen]);
 
@@ -61,7 +71,8 @@ export default function NavigationDrawer({
   return (
     <div
       ref={drawerRef}
-      className="fixed inset-0 z-[9995] bg-[#0c0d0e]/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 md:p-16 text-[#ededed] overflow-y-auto"
+      data-lenis-prevent
+      className="fixed inset-0 z-[9995] bg-[#0c0d0e]/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 md:p-16 text-[#ededed] overflow-y-auto overscroll-contain no-scrollbar"
     >
       {/* Top Header */}
       <div className="flex items-center justify-between border-b border-white/10 pb-6">

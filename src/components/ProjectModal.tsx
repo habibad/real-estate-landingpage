@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { X, Bed, Maximize2, Tag, Check, ArrowRight } from "lucide-react";
 import { ProjectData } from "@/data/siteData";
+import { useScrollLock } from "@/components/SmoothScrollProvider";
 
 interface ProjectModalProps {
   project: ProjectData | null;
@@ -18,12 +19,36 @@ export default function ProjectModal({
   onBookVisit,
   lang = "en",
 }: ProjectModalProps) {
+  const isOpen = Boolean(project);
+  useScrollLock(isOpen);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/85 backdrop-blur-lg animate-in fade-in duration-300">
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+      className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/85 backdrop-blur-lg animate-in fade-in duration-300"
+    >
       {/* Modal Card */}
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#141518] border border-[#2a2c33] rounded-2xl shadow-2xl overflow-y-auto flex flex-col text-[#ededed]">
+      <div
+        data-lenis-prevent
+        className="relative w-full max-w-4xl max-h-[90vh] bg-[#141518] border border-[#2a2c33] rounded-2xl shadow-2xl overflow-y-auto no-scrollbar flex flex-col text-[#ededed] overscroll-contain"
+      >
         {/* Close Button */}
         <button
           onClick={onClose}

@@ -53,6 +53,20 @@
   }
 }
 
+/* Hide scrollbar while preserving scrollability */
+.no-scrollbar::-webkit-scrollbar,
+[data-lenis-prevent]::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar,
+[data-lenis-prevent] {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
 /* Typography Utility Classes */
 .font-editorial {
   font-family: var(--font-cormorant), Georgia, serif;

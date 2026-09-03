@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { X, Calendar, Clock, User, Mail, Phone, Home, CheckCircle2 } from "lucide-react";
+import { useScrollLock } from "@/components/SmoothScrollProvider";
 
 interface BookVisitModalProps {
   isOpen: boolean;
@@ -14,6 +15,8 @@ export default function BookVisitModal({
   onClose,
   lang = "en",
 }: BookVisitModalProps) {
+  useScrollLock(isOpen);
+
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -25,6 +28,22 @@ export default function BookVisitModal({
     specialRequests: "",
   });
 
+  const resetAndClose = React.useCallback(() => {
+    setSubmitted(false);
+    onClose();
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        resetAndClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, resetAndClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,15 +51,20 @@ export default function BookVisitModal({
     setSubmitted(true);
   };
 
-  const resetAndClose = () => {
-    setSubmitted(false);
-    onClose();
-  };
-
   return (
-    <div className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/80 backdrop-blur-md transition-all animate-in fade-in duration-300">
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          resetAndClose();
+        }
+      }}
+      className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/80 backdrop-blur-md transition-all animate-in fade-in duration-300"
+    >
       {/* Modal Container */}
-      <div className="relative w-full max-w-xl bg-[#141518] border border-[#2a2c33] rounded-2xl shadow-2xl p-6 sm:p-8 text-[#ededed] overflow-hidden">
+      <div
+        data-lenis-prevent
+        className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto no-scrollbar bg-[#141518] border border-[#2a2c33] rounded-2xl shadow-2xl p-6 sm:p-8 text-[#ededed] overscroll-contain"
+      >
         {/* Subtle Ambient Glow */}
         <div className="absolute -top-24 -right-24 w-60 h-60 bg-white/5 rounded-full blur-3xl pointer-events-none" />
 

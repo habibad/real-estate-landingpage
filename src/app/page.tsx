@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 import BookVisitModal from "@/components/BookVisitModal";
 import ProjectModal from "@/components/ProjectModal";
 import NavigationDrawer from "@/components/NavigationDrawer";
-import { ProjectData, SITE_CONTENT } from "@/data/siteData";
+import { ProjectData } from "@/data/siteData";
 
 function MainContent() {
   const [lang, setLang] = useState<"en" | "de">("en");
