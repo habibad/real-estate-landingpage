@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { SITE_CONTENT, ProjectData } from "@/data/siteData";
 import AnimatedTitle from "@/components/AnimatedTitle";
+import { useLenis } from "@/components/SmoothScrollProvider";
 
 interface ProjectsCarouselProps {
   lang: "en" | "de";
@@ -18,16 +19,47 @@ export default function ProjectsCarousel({
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(1);
+  const isNavigatingRef = useRef(false);
+  const navigationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const { scrollTo: lenisScrollTo } = useLenis();
 
   const t = SITE_CONTENT[lang].projects;
 
-  const scrollToStep = useCallback((stepIndex: number) => {
-    const trigger = ScrollTrigger.getById("projects-carousel-trigger");
-    if (!trigger) return;
-    const progress = stepIndex === 1 ? 0 : stepIndex === 2 ? 0.5 : 1;
-    const targetScroll = trigger.start + progress * (trigger.end - trigger.start);
-    window.scrollTo({ top: targetScroll, behavior: "smooth" });
-  }, []);
+  const scrollToStep = useCallback(
+    (stepIndex: number) => {
+      const trigger = ScrollTrigger.getById("projects-carousel-trigger");
+      if (!trigger) return;
+      const progress = stepIndex === 1 ? 0 : stepIndex === 2 ? 0.5 : 1;
+      const targetScroll = trigger.start + progress * (trigger.end - trigger.start);
+
+      isNavigatingRef.current = true;
+      setActiveStep(stepIndex);
+
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+      }
+
+      if (lenisScrollTo) {
+        lenisScrollTo(targetScroll, {
+          duration: 0.95,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          onComplete: () => {
+            navigationTimeoutRef.current = setTimeout(() => {
+              isNavigatingRef.current = false;
+            }, 80);
+          },
+        });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: "smooth" });
+      }
+
+      navigationTimeoutRef.current = setTimeout(() => {
+        isNavigatingRef.current = false;
+      }, 1100);
+    },
+    [lenisScrollTo]
+  );
 
   useEffect(() => {
     if (!containerRef.current || !trackRef.current) return;
@@ -67,9 +99,13 @@ export default function ProjectsCarousel({
       const p1TitleChars = gsap.utils.toArray<HTMLElement>(".p1-title-char");
       const p2TitleChars = gsap.utils.toArray<HTMLElement>(".p2-title-char");
 
+      const p0DescWords = gsap.utils.toArray<HTMLElement>(".p0-desc-word");
+      const p1DescWords = gsap.utils.toArray<HTMLElement>(".p1-desc-word");
+      const p2DescWords = gsap.utils.toArray<HTMLElement>(".p2-desc-word");
+
       const cards = Array.from(track.children) as HTMLElement[];
 
-      // Initial state: Project 0 is fully assembled and centered
+      // Initial state: Project 0 is active, centered, and highlighted
       gsap.set(p0TitleChars, {
         opacity: 1,
         scale: 1,
@@ -78,6 +114,11 @@ export default function ProjectsCarousel({
         rotationZ: 0,
         rotationY: 0,
         filter: "blur(0px)",
+      });
+
+      gsap.set(p0DescWords, {
+        opacity: 1,
+        y: 0,
       });
 
       // Project 1 & 2 characters start in dispersed spiral state
@@ -94,6 +135,11 @@ export default function ProjectsCarousel({
         });
       });
 
+      gsap.set(p1DescWords, {
+        opacity: 0,
+        y: 8,
+      });
+
       p2TitleChars.forEach((el, i) => {
         const c = getSpiralCoords(i, p2TitleChars.length, "in");
         gsap.set(el, {
@@ -107,15 +153,41 @@ export default function ProjectsCarousel({
         });
       });
 
+      gsap.set(p2DescWords, {
+        opacity: 0,
+        y: 8,
+      });
+
       // Position track so Card 0 is centered initially
       gsap.set(track, { x: step });
 
-      // Initial card opacity
-      if (cards[0]) gsap.set(cards[0], { filter: "brightness(1)", opacity: 1 });
-      if (cards[1]) gsap.set(cards[1], { filter: "brightness(0.55)", opacity: 0.55 });
-      if (cards[2]) gsap.set(cards[2], { filter: "brightness(0.55)", opacity: 0.55 });
+      // Initial card highlighting: Card 0 is highlighted, Card 1 & 2 are unhighlighted/dimmed
+      if (cards[0]) {
+        gsap.set(cards[0], {
+          filter: "brightness(1) contrast(1.02)",
+          opacity: 1,
+          scale: 1.05,
+          borderColor: "rgba(255, 255, 255, 0.4)",
+        });
+      }
+      if (cards[1]) {
+        gsap.set(cards[1], {
+          filter: "brightness(0.35) contrast(0.9)",
+          opacity: 0.42,
+          scale: 0.92,
+          borderColor: "rgba(255, 255, 255, 0.08)",
+        });
+      }
+      if (cards[2]) {
+        gsap.set(cards[2], {
+          filter: "brightness(0.35) contrast(0.9)",
+          opacity: 0.42,
+          scale: 0.92,
+          borderColor: "rgba(255, 255, 255, 0.08)",
+        });
+      }
 
-      // Master Timeline with generous resting plateaus
+      // Master Timeline directly tied to scroll scrub with buttery smooth manual control (no snap collision)
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "projects-carousel-trigger",
@@ -124,12 +196,8 @@ export default function ProjectsCarousel({
           end: "+=280%",
           pin: true,
           scrub: 0.8,
-          snap: {
-            snapTo: [0, 0.5, 1],
-            duration: 0.45,
-            ease: "power2.inOut",
-          },
           onUpdate: (self) => {
+            if (isNavigatingRef.current) return;
             const p = self.progress;
             if (p < 0.28) {
               setActiveStep(1);
@@ -142,7 +210,7 @@ export default function ProjectsCarousel({
         },
       });
 
-      // --- 1. Track Movement (+step to -step) ---
+      // --- 1. Horizontal Track Movement (+step to -step) ---
       tl.to(
         track,
         {
@@ -153,19 +221,24 @@ export default function ProjectsCarousel({
         0
       );
 
-      // --- 2. Card Visual Focus ---
+      // --- 2. Phase 1: Card 0 Exits Center Stage (t: 0.12 to 0.38) ---
+      // Card 0 dims and scales down proportionally
       if (cards[0]) {
-        tl.to(cards[0], { filter: "brightness(0.55)", opacity: 0.55, duration: 0.22, ease: "power1.out" }, 0.16);
-      }
-      if (cards[1]) {
-        tl.to(cards[1], { filter: "brightness(1)", opacity: 1, duration: 0.22, ease: "power1.in" }, 0.26);
-        tl.to(cards[1], { filter: "brightness(0.55)", opacity: 0.55, duration: 0.22, ease: "power1.out" }, 0.56);
-      }
-      if (cards[2]) {
-        tl.to(cards[2], { filter: "brightness(1)", opacity: 1, duration: 0.22, ease: "power1.in" }, 0.74);
+        tl.to(
+          cards[0],
+          {
+            filter: "brightness(0.35) contrast(0.9)",
+            opacity: 0.42,
+            scale: 0.92,
+            borderColor: "rgba(255, 255, 255, 0.08)",
+            duration: 0.24,
+            ease: "power1.out",
+          },
+          0.12
+        );
       }
 
-      // --- 3. Phase 1: Project 0 Leaves Center -> Spiral Out (0.16 to 0.36) ---
+      // Project 0 Title disperses / un-types
       tl.to(
         p0TitleChars,
         {
@@ -177,13 +250,43 @@ export default function ProjectsCarousel({
           opacity: 0,
           filter: "blur(6px)",
           stagger: 0.003,
-          duration: 0.20,
+          duration: 0.18,
           ease: "power2.in",
         },
-        0.16
+        0.12
       );
 
-      // --- 4. Phase 1: Project 1 Enters Center -> Spiral In (0.28 to 0.48) ---
+      // Project 0 Description un-types word-by-word
+      tl.to(
+        p0DescWords,
+        {
+          opacity: 0,
+          y: -6,
+          stagger: 0.003,
+          duration: 0.16,
+          ease: "power2.in",
+        },
+        0.12
+      );
+
+      // --- 3. Phase 1: Card 1 Enters Center Stage (t: 0.24 to 0.50) ---
+      // Card 1 brightens and scales up to full highlight
+      if (cards[1]) {
+        tl.to(
+          cards[1],
+          {
+            filter: "brightness(1) contrast(1.02)",
+            opacity: 1,
+            scale: 1.05,
+            borderColor: "rgba(255, 255, 255, 0.4)",
+            duration: 0.24,
+            ease: "power1.inOut",
+          },
+          0.26
+        );
+      }
+
+      // Project 1 Title assembles into center stage
       tl.to(
         p1TitleChars,
         {
@@ -198,10 +301,40 @@ export default function ProjectsCarousel({
           duration: 0.20,
           ease: "power2.out",
         },
+        0.26
+      );
+
+      // Project 1 Description types in word-by-word
+      tl.to(
+        p1DescWords,
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.004,
+          duration: 0.20,
+          ease: "power2.out",
+        },
         0.28
       );
 
-      // --- 5. Phase 2: Project 1 Leaves Center -> Spiral Out (0.54 to 0.74) ---
+      // --- 4. Phase 2: Card 1 Exits Center Stage (t: 0.54 to 0.78) ---
+      // Card 1 dims down proportionally
+      if (cards[1]) {
+        tl.to(
+          cards[1],
+          {
+            filter: "brightness(0.35) contrast(0.9)",
+            opacity: 0.42,
+            scale: 0.92,
+            borderColor: "rgba(255, 255, 255, 0.08)",
+            duration: 0.24,
+            ease: "power1.out",
+          },
+          0.54
+        );
+      }
+
+      // Project 1 Title disperses / un-types
       tl.to(
         p1TitleChars,
         {
@@ -213,13 +346,43 @@ export default function ProjectsCarousel({
           opacity: 0,
           filter: "blur(6px)",
           stagger: 0.003,
-          duration: 0.20,
+          duration: 0.18,
           ease: "power2.in",
         },
         0.54
       );
 
-      // --- 6. Phase 2: Project 2 Enters Center -> Spiral In (0.72 to 0.92) ---
+      // Project 1 Description un-types word-by-word
+      tl.to(
+        p1DescWords,
+        {
+          opacity: 0,
+          y: -6,
+          stagger: 0.003,
+          duration: 0.16,
+          ease: "power2.in",
+        },
+        0.54
+      );
+
+      // --- 5. Phase 2: Card 2 Enters Center Stage (t: 0.68 to 0.92) ---
+      // Card 2 brightens and scales up to full highlight
+      if (cards[2]) {
+        tl.to(
+          cards[2],
+          {
+            filter: "brightness(1) contrast(1.02)",
+            opacity: 1,
+            scale: 1.05,
+            borderColor: "rgba(255, 255, 255, 0.4)",
+            duration: 0.24,
+            ease: "power1.inOut",
+          },
+          0.68
+        );
+      }
+
+      // Project 2 Title assembles into center stage
       tl.to(
         p2TitleChars,
         {
@@ -234,7 +397,20 @@ export default function ProjectsCarousel({
           duration: 0.20,
           ease: "power2.out",
         },
-        0.72
+        0.68
+      );
+
+      // Project 2 Description types in word-by-word
+      tl.to(
+        p2DescWords,
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.004,
+          duration: 0.20,
+          ease: "power2.out",
+        },
+        0.70
       );
 
       const handleResize = () => {
@@ -319,20 +495,15 @@ export default function ProjectsCarousel({
 
       {/* 2. CENTER STAGE: Fixed Middle Active Area */}
       <div className="relative z-10 w-full flex-1 flex items-center justify-center overflow-hidden my-auto py-1">
-        {/* FIXED MIDDLE ACTIVE HEADLINE STAGE: Both lines strictly centered with each other and middle card */}
+        {/* FIXED MIDDLE ACTIVE HEADLINE STAGE */}
         <div className="absolute top-[8%] sm:top-[9%] lg:top-[10%] left-0 right-0 z-30 flex justify-center pointer-events-none select-none px-4">
           <div className="max-w-[92vw] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[680px] w-full text-center relative h-[100px] sm:h-[130px] md:h-[150px]">
             {t.items.map((project, idx) => {
               const [l1, l2] = project.headlineParts || [project.title, ""];
-              const isActive = activeStep === idx + 1;
               return (
                 <div
                   key={project.id}
-                  className={`absolute inset-0 flex flex-col items-center justify-center text-center transition-opacity duration-300 ${
-                    isActive
-                      ? "opacity-100 visible"
-                      : "opacity-0 invisible pointer-events-none"
-                  }`}
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none"
                 >
                   <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-normal tracking-[0.04em] text-white uppercase leading-[0.88] drop-shadow-[0_12px_24px_rgba(0,0,0,0.95)] text-center w-full">
                     <span className="block text-center w-full">
@@ -348,7 +519,7 @@ export default function ProjectsCarousel({
           </div>
         </div>
 
-        {/* Horizontal Track: Seamless shifting between active and side positions */}
+        {/* Horizontal Track: Smooth sliding with active card highlighted in center */}
         <div
           ref={trackRef}
           className="flex items-center gap-24 sm:gap-32 md:gap-36 lg:gap-44 xl:gap-52 will-change-transform"
@@ -363,7 +534,7 @@ export default function ProjectsCarousel({
                   scrollToStep(idx + 1);
                 }
               }}
-              className="relative cursor-pointer flex-shrink-0 shadow-2xl bg-[#141518] w-[72vw] sm:w-[46vw] md:w-[34vw] lg:w-[30vw] max-w-[420px] h-[46vh] sm:h-[50vh] max-h-[460px] min-h-[280px]"
+              className="relative cursor-pointer flex-shrink-0 shadow-2xl bg-[#141518] rounded-2xl overflow-hidden border border-white/10 w-[72vw] sm:w-[46vw] md:w-[34vw] lg:w-[30vw] max-w-[420px] h-[46vh] sm:h-[50vh] max-h-[460px] min-h-[280px] transition-[border-color,box-shadow] duration-300 will-change-transform"
             >
               <Image
                 src={project.image}
@@ -372,33 +543,44 @@ export default function ProjectsCarousel({
                 priority={idx === 1}
                 className="object-cover object-center"
               />
+              {/* Subtle glass reflection overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5 pointer-events-none" />
             </div>
           ))}
         </div>
       </div>
 
-      {/* 3. FIXED MIDDLE BOTTOM CONTENT STAGE: Crisp, razor-sharp paragraph alignment */}
+      {/* 3. FIXED MIDDLE BOTTOM CONTENT STAGE: Live description word typing & CTA button */}
       <div className="relative z-20 w-full px-6 flex items-center justify-center shrink-0">
-        <div className="max-w-[440px] w-full flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-center sm:text-left">
-          {/* Clean Description Stage: Perfectly aligned, zero jumbling */}
+        <div className="max-w-[460px] w-full flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-center sm:text-left">
+          {/* Live Description Stage: Scroll-scrubbed word typing */}
           <div className="relative w-full max-w-xs sm:max-w-sm min-h-[48px] flex items-center overflow-hidden">
-            {t.items.map((project, idx) => (
-              <p
-                key={project.id}
-                className={`absolute inset-0 flex items-center text-xs sm:text-[13px] text-[#9aa0a6] leading-relaxed font-sans font-light transition-all duration-500 ${
-                  activeStep === idx + 1
-                    ? "opacity-100 translate-y-0 visible"
-                    : "opacity-0 translate-y-2 invisible pointer-events-none"
-                }`}
-              >
-                {project.subtitle || project.description}
-              </p>
-            ))}
+            {t.items.map((project, idx) => {
+              const text = project.subtitle || project.description;
+              const words = text.split(/\s+/).filter(Boolean);
+              return (
+                <div
+                  key={project.id}
+                  className="absolute inset-0 flex items-center pointer-events-none"
+                >
+                  <p className="text-xs sm:text-[13px] text-[#9aa0a6] leading-relaxed font-sans font-light">
+                    {words.map((word, wIdx) => (
+                      <span
+                        key={wIdx}
+                        className={`p${idx}-desc-word inline-block will-change-transform`}
+                      >
+                        {word}&nbsp;
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
           <button
             onClick={() => onSelectProject(activeProject)}
-            className="bg-white text-black hover:bg-neutral-200 transition-all px-6 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase shrink-0 shadow-xl cursor-pointer"
+            className="btn-pill-white !py-2.5 !px-6 !text-xs shrink-0 shadow-xl cursor-pointer"
           >
             {t.cta}
           </button>
