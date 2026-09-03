@@ -24,22 +24,32 @@ export default function About({ lang, onLearnMore }: AboutProps) {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Height expansion and upward glide animation when scrolling from Hero into About
+      // 3D Height expansion and upward glide animation when scrolling from Hero into About
       if (imageCardRef.current) {
         gsap.fromTo(
           imageCardRef.current,
           {
             clipPath: "inset(100% 0% 0% 0%)",
+            transformOrigin: "bottom center",
+            rotationX: 22,
+            rotationY: -3,
+            z: -80,
             y: 90,
+            scale: 0.92,
             opacity: 0,
-            scale: 0.94,
+            filter: "brightness(0.75)",
           },
           {
             clipPath: "inset(0% 0% 0% 0%)",
+            transformOrigin: "bottom center",
+            rotationX: 0,
+            rotationY: 0,
+            z: 0,
             y: 0,
-            opacity: 1,
             scale: 1,
-            duration: 1.3,
+            opacity: 1,
+            filter: "brightness(1)",
+            duration: 1.35,
             ease: "power3.out",
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -106,14 +116,14 @@ export default function About({ lang, onLearnMore }: AboutProps) {
             </AnimatedTitle>
           </div>
 
-          {/* Center Column: Vertical Architectural Render with Parallax */}
+          {/* Center Column: Vertical Architectural Render with 3D Expansion & Parallax */}
           <div
             ref={imageContainerRef}
-            className="md:col-span-4 flex justify-center items-center py-4"
+            className="md:col-span-4 flex justify-center items-center py-4 [perspective:1200px]"
           >
             <div
               ref={imageCardRef}
-              className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] will-change-transform"
+              className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-white/15 bg-[#16171a] will-change-transform [transform-style:preserve-3d]"
             >
               <div ref={imageInnerRef} className="relative w-full h-[120%] -top-[10%]">
                 <Image
@@ -123,7 +133,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
                   className="object-cover object-center"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/5 pointer-events-none" />
             </div>
           </div>
 
