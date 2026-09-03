@@ -45,7 +45,7 @@ function MainContent() {
   };
 
   return (
-    <main className="relative bg-[#0c0d0e] min-h-screen text-[#ededed] selection:bg-neutral-800 selection:text-white">
+    <main className="relative bg-[#0c0d0e] dark:bg-[#0c0d0e] bg-[#f9f8f6] min-h-screen text-[#ededed] dark:text-[#ededed] text-[#121316] selection:bg-neutral-800 selection:text-white transition-colors duration-300">
       {/* Luxury Custom Cursor */}
       <CustomCursor />
 

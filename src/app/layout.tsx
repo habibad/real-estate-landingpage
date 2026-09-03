@@ -24,6 +24,8 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+import ThemeProvider from "@/components/ThemeProvider";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://elyse-residence.com"),
   title: "ELYSE | Holistic Luxury In Perfect Harmony",
@@ -45,10 +47,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${cinzel.variable} ${plusJakarta.variable} bg-[#0c0d0e] text-white selection:bg-neutral-800 selection:text-white antialiased`}
+      suppressHydrationWarning
+      className={`${cormorant.variable} ${cinzel.variable} ${plusJakarta.variable} dark antialiased`}
     >
-      <body className="bg-[#0c0d0e] text-[#ededed] font-sans overflow-x-hidden min-h-screen">
-        {children}
+      <body className="bg-[#0c0d0e] dark:bg-[#0c0d0e] text-[#ededed] dark:text-[#ededed] font-sans overflow-x-hidden min-h-screen selection:bg-neutral-800 selection:text-white">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

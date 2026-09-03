@@ -463,13 +463,13 @@ export default function ProjectsCarousel({
     <section
       id="projects"
       ref={containerRef}
-      className="relative w-full h-screen h-[100dvh] max-h-screen bg-[#0c0d0e] flex flex-col justify-between overflow-hidden select-none py-6 sm:py-8"
+      className="relative w-full h-screen h-[100dvh] max-h-screen bg-[var(--bg-main)] flex flex-col justify-between overflow-hidden select-none py-6 sm:py-8 transition-colors duration-300"
     >
       {/* 1. TOP HEADER BAR: (OUR PROJECTS) on Left, (1)  (2)  (3) on Right */}
       <div className="relative z-40 w-full px-8 sm:px-12 md:px-16 flex items-center justify-between shrink-0">
         <AnimatedTitle
           as="span"
-          className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-white/90 block"
+          className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-neutral-600 dark:text-white/90 block"
           yOffset={20}
         >
           {t.tag}
@@ -481,10 +481,10 @@ export default function ProjectsCarousel({
             <button
               key={step}
               onClick={() => scrollToStep(step)}
-              className={`transition-all duration-300 py-1 ${
+              className={`transition-all duration-300 py-1 cursor-pointer ${
                 activeStep === step
-                  ? "text-white font-bold scale-105"
-                  : "text-white/40 hover:text-white/75"
+                  ? "text-neutral-900 dark:text-white font-bold scale-105"
+                  : "text-neutral-400 dark:text-white/40 hover:text-black dark:hover:text-white/75"
               }`}
             >
               ({step})
@@ -505,7 +505,7 @@ export default function ProjectsCarousel({
                   key={project.id}
                   className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none"
                 >
-                  <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-normal tracking-[0.04em] text-white uppercase leading-[0.88] drop-shadow-[0_12px_24px_rgba(0,0,0,0.95)] text-center w-full">
+                  <h2 className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-normal tracking-[0.04em] text-neutral-900 dark:text-white uppercase leading-[0.88] drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_12px_24px_rgba(0,0,0,0.95)] text-center w-full">
                     <span className="block text-center w-full">
                       {renderLineChars(l1, `p${idx}-title-char`)}
                     </span>
@@ -534,7 +534,7 @@ export default function ProjectsCarousel({
                   scrollToStep(idx + 1);
                 }
               }}
-              className="relative cursor-pointer flex-shrink-0 shadow-2xl bg-[#141518] rounded-2xl overflow-hidden border border-white/10 w-[72vw] sm:w-[46vw] md:w-[34vw] lg:w-[30vw] max-w-[420px] h-[46vh] sm:h-[50vh] max-h-[460px] min-h-[280px] transition-[border-color,box-shadow] duration-300 will-change-transform"
+              className="relative cursor-pointer flex-shrink-0 shadow-2xl bg-[#141518] dark:bg-[#141518] bg-white rounded-2xl overflow-hidden border border-white/10 dark:border-white/10 border-black/10 w-[72vw] sm:w-[46vw] md:w-[34vw] lg:w-[30vw] max-w-[420px] h-[46vh] sm:h-[50vh] max-h-[460px] min-h-[280px] transition-[border-color,box-shadow] duration-300 will-change-transform"
             >
               <Image
                 src={project.image}
@@ -563,11 +563,16 @@ export default function ProjectsCarousel({
                   key={project.id}
                   className="absolute inset-0 flex items-center pointer-events-none"
                 >
-                  <p className="text-xs sm:text-[13px] text-[#9aa0a6] leading-relaxed font-sans font-light">
+                  <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light">
                     {words.map((word, wIdx) => (
                       <span
                         key={wIdx}
                         className={`p${idx}-desc-word inline-block will-change-transform`}
+                        style={{
+                          display: "inline-block",
+                          opacity: idx === 0 ? 1 : 0,
+                          transform: idx === 0 ? "none" : "translateY(10px)",
+                        }}
                       >
                         {word}&nbsp;
                       </span>
@@ -578,12 +583,15 @@ export default function ProjectsCarousel({
             })}
           </div>
 
-          <button
-            onClick={() => onSelectProject(activeProject)}
-            className="btn-pill-white !py-2.5 !px-6 !text-xs shrink-0 shadow-xl cursor-pointer"
-          >
-            {t.cta}
-          </button>
+          {/* Action Button: Opens Luxury ProjectModal */}
+          <div className="shrink-0">
+            <button
+              onClick={() => onSelectProject(activeProject)}
+              className="btn-pill-white text-[10px] sm:text-xs"
+            >
+              {t.cta}
+            </button>
+          </div>
         </div>
       </div>
     </section>

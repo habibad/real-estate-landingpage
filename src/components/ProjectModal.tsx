@@ -47,12 +47,12 @@ export default function ProjectModal({
       {/* Modal Card */}
       <div
         data-lenis-prevent
-        className="relative w-full max-w-4xl max-h-[90vh] bg-[#141518] border border-[#2a2c33] rounded-2xl shadow-2xl overflow-y-auto no-scrollbar flex flex-col text-[#ededed] overscroll-contain"
+        className="relative w-full max-w-4xl max-h-[90vh] bg-[#141518] dark:bg-[#141518] bg-white border border-[#2a2c33] dark:border-[#2a2c33] border-black/10 rounded-2xl shadow-2xl overflow-y-auto no-scrollbar flex flex-col text-[#ededed] dark:text-[#ededed] text-[#121316] overscroll-contain transition-colors duration-300"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
+          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-black/60 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all cursor-pointer"
           aria-label="Close Project Details"
         >
           <X size={18} />
@@ -83,77 +83,77 @@ export default function ProjectModal({
         {/* Content Body */}
         <div className="p-6 sm:p-8 space-y-8">
           {/* Key Stat Badges */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-y border-[#26282d] py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-y border-[#26282d] dark:border-[#26282d] border-black/10 py-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
+              <div className="w-8 h-8 rounded-full bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 flex items-center justify-center text-white/70 dark:text-white/70 text-neutral-600">
                 <Maximize2 size={16} />
               </div>
               <div>
-                <div className="text-[10px] font-mono text-white/50 uppercase">
+                <div className="text-[10px] font-mono text-white/50 dark:text-white/50 text-neutral-500 uppercase">
                   {lang === "en" ? "Total Area" : "Gesamtfläche"}
                 </div>
-                <div className="text-sm font-semibold text-white">{project.area}</div>
+                <div className="text-sm font-semibold text-white dark:text-white text-neutral-900">{project.area}</div>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
+              <div className="w-8 h-8 rounded-full bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 flex items-center justify-center text-white/70 dark:text-white/70 text-neutral-600">
                 <Bed size={16} />
               </div>
               <div>
-                <div className="text-[10px] font-mono text-white/50 uppercase">
+                <div className="text-[10px] font-mono text-white/50 dark:text-white/50 text-neutral-500 uppercase">
                   {lang === "en" ? "Layout" : "Aufteilung"}
                 </div>
-                <div className="text-sm font-semibold text-white">{project.bedrooms}</div>
+                <div className="text-sm font-semibold text-white dark:text-white text-neutral-900">{project.bedrooms}</div>
               </div>
             </div>
 
             <div className="flex items-center gap-3 col-span-2 sm:col-span-1">
-              <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
+              <div className="w-8 h-8 rounded-full bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 flex items-center justify-center text-white/70 dark:text-white/70 text-neutral-600">
                 <Tag size={16} />
               </div>
               <div>
-                <div className="text-[10px] font-mono text-white/50 uppercase">
+                <div className="text-[10px] font-mono text-white/50 dark:text-white/50 text-neutral-500 uppercase">
                   {lang === "en" ? "Price Valuation" : "Preissegment"}
                 </div>
-                <div className="text-sm font-semibold text-white">{project.price}</div>
+                <div className="text-sm font-semibold text-white dark:text-white text-neutral-900">{project.price}</div>
               </div>
             </div>
           </div>
 
           {/* Overview & Description */}
           <div className="space-y-3">
-            <h3 className="text-xs font-mono uppercase tracking-[0.15em] text-white/60">
+            <h3 className="text-xs font-mono uppercase tracking-[0.15em] text-white/60 dark:text-white/60 text-neutral-500">
               {lang === "en" ? "(ARCHITECTURAL NARRATIVE)" : "(ARCHITEKTONISCHES KONZEPT)"}
             </h3>
-            <p className="text-sm text-[#9aa0a6] leading-relaxed font-sans-clean">
+            <p className="text-sm text-[#9aa0a6] dark:text-[#9aa0a6] text-neutral-600 leading-relaxed font-sans-clean">
               {project.description}
             </p>
           </div>
 
           {/* Architectural Key Features */}
           <div className="space-y-3">
-            <h3 className="text-xs font-mono uppercase tracking-[0.15em] text-white/60">
+            <h3 className="text-xs font-mono uppercase tracking-[0.15em] text-white/60 dark:text-white/60 text-neutral-500">
               {lang === "en" ? "(DISTINGUISHED SPECIFICATIONS)" : "(AUSSTATTUNGSMERKMALE)"}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {project.features.map((feat, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/5"
+                  className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.03] dark:bg-white/[0.03] bg-neutral-50 border border-white/5 dark:border-white/5 border-black/8"
                 >
-                  <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center text-white/80 shrink-0">
+                  <div className="w-4 h-4 rounded-full bg-white/10 dark:bg-white/10 bg-black/10 flex items-center justify-center text-white/80 dark:text-white/80 text-neutral-700 shrink-0">
                     <Check size={10} />
                   </div>
-                  <span className="text-xs text-[#ededed] font-sans-clean">{feat}</span>
+                  <span className="text-xs text-[#ededed] dark:text-[#ededed] text-neutral-800 font-sans-clean">{feat}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* CTA Footer */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#26282d]">
-            <div className="text-xs text-white/60">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#26282d] dark:border-[#26282d] border-black/10">
+            <div className="text-xs text-white/60 dark:text-white/60 text-neutral-600">
               {lang === "en"
                 ? "Private showings arranged exclusively by appointment."
                 : "Private Besichtigungen ausschließlich nach Vereinbarung."}

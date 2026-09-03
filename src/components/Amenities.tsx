@@ -97,7 +97,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
     <section
       id="amenities"
       ref={containerRef}
-      className="relative w-full min-h-screen py-24 sm:py-32 md:py-40 bg-[#0c0d0e] flex items-center overflow-hidden border-t border-white/5 select-none"
+      className="relative w-full min-h-screen py-24 sm:py-32 md:py-40 bg-[var(--bg-main)] flex items-center overflow-hidden border-t border-black/5 dark:border-white/5 select-none transition-colors duration-300"
     >
       <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-10 md:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -108,7 +108,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             <div>
               <AnimatedTitle
                 as="span"
-                className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 uppercase block"
+                className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/70 uppercase block"
                 yOffset={20}
               >
                 {t.tag || "(WELLNESS & AMENITIES)"}
@@ -118,7 +118,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             {/* Headline */}
             <AnimatedTitle
               as="h2"
-              className="font-editorial text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-white uppercase leading-[1.06] drop-shadow-md"
+              className="font-editorial text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-neutral-900 dark:text-white uppercase leading-[1.06] drop-shadow-md"
               yOffset={45}
               delay={0.1}
             >
@@ -128,20 +128,20 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             {/* Narrative Description */}
             <LiveText
               text={t.description}
-              className="text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light max-w-md"
+              className="text-xs sm:text-[13px] md:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light max-w-md"
               delay={0.15}
               stagger={0.03}
             />
 
             {/* Curated Amenity Highlights */}
             {t.features && (
-              <div className="pt-1 space-y-2.5 border-l border-white/15 pl-4 sm:pl-5">
+              <div className="pt-1 space-y-2.5 border-l border-black/15 dark:border-white/15 pl-4 sm:pl-5">
                 {t.features.map((feature, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 text-xs sm:text-[13px] text-white/80 font-sans font-light"
+                    className="flex items-center gap-3 text-xs sm:text-[13px] text-neutral-700 dark:text-white/80 font-sans font-light"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-white/40 shrink-0" />
                     <LiveText text={feature} delay={0.25 + i * 0.08} stagger={0.025} />
                   </div>
                 ))}
@@ -152,7 +152,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             <div className="amenity-anim pt-3">
               <button
                 onClick={onLearnMore}
-                className="bg-white text-black hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
+                className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-8 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
               >
                 {t.cta}
               </button>
@@ -164,7 +164,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             ref={centerCardRef}
             className="lg:col-span-4 flex justify-center items-center"
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[460px] sm:h-[520px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] group transition-transform duration-500 hover:scale-[1.02]">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[460px] sm:h-[520px] rounded-2xl overflow-hidden shadow-black/5 dark:shadow-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#16171a] group transition-transform duration-500 hover:scale-[1.02]">
               <Image
                 src={t.gymImage}
                 alt={t.gymAlt}
@@ -184,7 +184,7 @@ export default function Amenities({ lang, onLearnMore }: AmenitiesProps) {
             ref={rightCardRef}
             className="lg:col-span-3 flex justify-center items-center"
           >
-            <div className="relative w-full max-w-[300px] sm:max-w-[340px] h-[420px] sm:h-[480px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#16171a] group transition-transform duration-500 hover:scale-[1.02]">
+            <div className="relative w-full max-w-[300px] sm:max-w-[340px] h-[420px] sm:h-[480px] rounded-2xl overflow-hidden shadow-black/5 dark:shadow-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#16171a] group transition-transform duration-500 hover:scale-[1.02]">
               <Image
                 src={t.corridorImage}
                 alt={t.corridorAlt}

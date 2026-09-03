@@ -54,7 +54,7 @@ export default function Metrics({ lang }: MetricsProps) {
     <section
       id="metrics"
       ref={containerRef}
-      className="relative w-full min-h-screen py-24 sm:py-36 md:py-48 bg-[#0c0d0e] flex items-center overflow-hidden border-t border-white/5"
+      className="relative w-full min-h-screen py-24 sm:py-36 md:py-48 bg-[var(--bg-main)] flex items-center overflow-hidden border-t border-black/5 dark:border-white/5 transition-colors duration-300"
     >
       <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14">
         {/* Asymmetrical Stat Matrix matching video frame 03 */}
@@ -66,16 +66,16 @@ export default function Metrics({ lang }: MetricsProps) {
             {/* Metric: Green Spaces */}
             <div className="sm:col-span-4 space-y-1">
               <div className="flex items-baseline gap-2">
-                <span className="font-editorial text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-normal leading-none tracking-tight">
+                <span className="font-editorial text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-neutral-900 dark:text-white font-normal leading-none tracking-tight">
                   {greenSpace}
                 </span>
-                <span className="font-editorial italic text-2xl sm:text-3xl md:text-4xl text-white/80">
+                <span className="font-editorial italic text-2xl sm:text-3xl md:text-4xl text-neutral-600 dark:text-white/80">
                   {t.greenSpaces.unit}
                 </span>
               </div>
               <LiveText
                 text={t.greenSpaces.label}
-                className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[200px] leading-relaxed"
+                className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-[200px] leading-relaxed"
                 delay={0.1}
                 stagger={0.03}
               />
@@ -84,13 +84,13 @@ export default function Metrics({ lang }: MetricsProps) {
             {/* Metric: Residences */}
             <div className="sm:col-span-3 space-y-1">
               <div className="flex items-baseline">
-                <span className="font-editorial text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-normal leading-none tracking-tight">
+                <span className="font-editorial text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-neutral-900 dark:text-white font-normal leading-none tracking-tight">
                   {residences}
                 </span>
               </div>
               <LiveText
                 text={t.residences.label}
-                className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[220px] leading-relaxed"
+                className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-[220px] leading-relaxed"
                 delay={0.15}
                 stagger={0.03}
               />
@@ -100,16 +100,16 @@ export default function Metrics({ lang }: MetricsProps) {
           {/* Middle Row: Living Space (Left Aligned) */}
           <div className="my-12 sm:my-8 max-w-lg">
             <div className="flex items-baseline gap-3">
-              <span className="font-editorial text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] text-white font-normal leading-none tracking-tight">
+              <span className="font-editorial text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] text-neutral-900 dark:text-white font-normal leading-none tracking-tight">
                 {livingSpace}k
               </span>
-              <span className="font-editorial italic text-2xl sm:text-4xl md:text-5xl text-white/80">
+              <span className="font-editorial italic text-2xl sm:text-4xl md:text-5xl text-neutral-600 dark:text-white/80">
                 {t.livingSpace.unit}
               </span>
             </div>
             <LiveText
               text={t.livingSpace.label}
-              className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-[260px] leading-relaxed mt-2"
+              className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-[260px] leading-relaxed mt-2"
               delay={0.1}
               stagger={0.03}
             />
@@ -118,12 +118,12 @@ export default function Metrics({ lang }: MetricsProps) {
           {/* Bottom Row: 24/7 Concierge (Center Aligned) */}
           <div className="flex justify-center w-full pt-8">
             <div className="text-center space-y-2">
-              <div className="font-editorial text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] text-white font-normal leading-none tracking-tight">
+              <div className="font-editorial text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] text-neutral-900 dark:text-white font-normal leading-none tracking-tight">
                 {t.concierge.value}
               </div>
               <LiveText
                 text={t.concierge.label}
-                className="text-xs sm:text-[13px] text-[#9aa0a6] font-sans-clean max-w-sm mx-auto leading-relaxed"
+                className="text-xs sm:text-[13px] text-neutral-500 dark:text-[#9aa0a6] font-sans-clean max-w-sm mx-auto leading-relaxed"
                 delay={0.1}
                 stagger={0.03}
               />

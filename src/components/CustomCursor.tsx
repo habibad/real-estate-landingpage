@@ -90,8 +90,8 @@ export default function CustomCursor() {
           isVisible ? "opacity-70" : "opacity-0"
         } ${
           isHovered
-            ? "w-12 h-12 bg-white/10 border border-white/40 backdrop-blur-[1px] scale-110"
-            : "w-8 h-8 border border-white/25 scale-100"
+            ? "w-12 h-12 bg-white/10 dark:bg-white/10 bg-black/5 border border-white/40 dark:border-white/40 border-black/30 backdrop-blur-[1px] scale-110"
+            : "w-8 h-8 border border-white/25 dark:border-white/25 border-black/25 scale-100"
         }`}
       />
     </>

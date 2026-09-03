@@ -31,13 +31,13 @@ function NotchedCard({
     >
       {/* SVG Notched Frosted Background */}
       <div
-        className="absolute inset-0 z-0 overflow-hidden backdrop-blur-md bg-white/[0.08] shadow-2xl transition-all duration-300 group-hover:bg-white/[0.12]"
+        className="absolute inset-0 z-0 overflow-hidden backdrop-blur-md bg-white/85 dark:bg-white/[0.08] shadow-black/5 dark:shadow-2xl transition-all duration-300 group-hover:bg-white/95 dark:group-hover:bg-white/[0.12]"
         style={{ clipPath: "url(#notched-bento-card)" }}
       />
 
       {/* SVG Outline with Inward Concave Architectural Notches */}
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none z-10 stroke-white/25 group-hover:stroke-white/40 transition-colors"
+        className="absolute inset-0 w-full h-full pointer-events-none z-10 stroke-black/15 dark:stroke-white/25 group-hover:stroke-black/30 dark:group-hover:stroke-white/40 transition-colors"
         viewBox="0 0 100 140"
         preserveAspectRatio="none"
       >
@@ -53,14 +53,14 @@ function NotchedCard({
       <div className="relative z-20 flex flex-col justify-center items-center space-y-3 sm:space-y-4 max-w-[210px] sm:max-w-[230px]">
         <AnimatedTitle
           as="h3"
-          className="font-editorial italic text-lg sm:text-xl md:text-2xl text-white font-normal uppercase leading-snug tracking-wide drop-shadow-md"
+          className="font-editorial italic text-lg sm:text-xl md:text-2xl text-neutral-900 dark:text-white font-normal uppercase leading-snug tracking-wide drop-shadow-md"
           yOffset={25}
         >
           {title}
         </AnimatedTitle>
         <LiveText
           text={description}
-          className="text-xs sm:text-[13px] text-white/80 font-sans font-light leading-relaxed"
+          className="text-xs sm:text-[13px] text-neutral-600 dark:text-white/80 font-sans font-light leading-relaxed"
           delay={0.1}
           stagger={0.03}
         />
@@ -133,12 +133,12 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
     <div
       id="beliefs"
       ref={containerRef}
-      className="relative w-full bg-[#0c0d0e] border-t border-white/5 overflow-hidden"
+      className="relative w-full bg-[var(--bg-main)] border-t border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300"
     >
       {/* SECTION PART 1: Architectural Split Manifesto matching user annotated screenshot */}
       <div
         ref={introRef}
-        className="relative w-full min-h-[90vh] lg:min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden border-b border-white/5"
+        className="relative w-full min-h-[90vh] lg:min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden border-b border-black/5 dark:border-white/5"
       >
         {/* 1. Left Side: Full-Height Architectural Render (50% Width on Desktop) */}
         <div className="relative w-full lg:w-1/2 h-[50vh] sm:h-[60vh] lg:h-auto min-h-[420px] lg:min-h-screen overflow-hidden">
@@ -153,13 +153,13 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
-        {/* 2. Right Side: Deep Black Background with Aligned Content (50% Width on Desktop) */}
-        <div className="relative w-full lg:w-1/2 bg-[#0c0d0e] flex flex-col justify-between py-12 sm:py-16 lg:py-20 px-8 sm:px-12 lg:px-16 xl:px-20 min-h-[380px] lg:min-h-screen">
+        {/* 2. Right Side: Deep Background with Aligned Content (50% Width on Desktop) */}
+        <div className="relative w-full lg:w-1/2 bg-[var(--bg-main)] flex flex-col justify-between py-12 sm:py-16 lg:py-20 px-8 sm:px-12 lg:px-16 xl:px-20 min-h-[380px] lg:min-h-screen transition-colors duration-300">
           {/* Top: (OUR BELIEFS) Tag - Aligned on vertical guide line */}
           <div className="pt-2">
             <AnimatedTitle
               as="span"
-              className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-white/90 block"
+              className="font-editorial italic text-sm sm:text-base tracking-[0.14em] text-neutral-600 dark:text-white/90 block"
               yOffset={20}
             >
               {t.tag}
@@ -170,7 +170,7 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
           <div className="pb-4 space-y-6 max-w-md">
             <LiveText
               text={t.subHeadline}
-              className="text-xs sm:text-[13px] md:text-sm text-[#9aa0a6] leading-relaxed font-sans font-light"
+              className="text-xs sm:text-[13px] md:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans font-light"
               delay={0.1}
               stagger={0.03}
             />
@@ -178,7 +178,7 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
             <div>
               <button
                 onClick={onBookVisit}
-                className="bg-white text-black hover:bg-neutral-200 transition-all px-7 py-3 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
+                className="bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-all px-7 py-3 rounded-full text-xs font-semibold tracking-wider uppercase shadow-xl cursor-pointer"
               >
                 {t.cta}
               </button>
@@ -190,7 +190,7 @@ export default function BeliefsGrid({ lang, onBookVisit }: BeliefsGridProps) {
         <div className="absolute z-20 top-[28%] sm:top-[30%] lg:top-[32%] left-6 sm:left-12 lg:left-[31vw] xl:left-[33vw] pointer-events-none select-none max-w-[92vw] lg:max-w-[65vw]">
           <AnimatedTitle
             as="h2"
-            className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.2rem] 2xl:text-[7rem] font-normal uppercase text-white leading-[0.88] tracking-[0.03em] drop-shadow-[0_12px_28px_rgba(0,0,0,0.95)] text-left"
+            className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.2rem] 2xl:text-[7rem] font-normal uppercase text-neutral-900 dark:text-white leading-[0.88] tracking-[0.03em] drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_12px_28px_rgba(0,0,0,0.95)] text-left"
             yOffset={60}
             duration={0.95}
           >

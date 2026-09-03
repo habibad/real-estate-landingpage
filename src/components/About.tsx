@@ -88,7 +88,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
     <section
       id="about"
       ref={sectionRef}
-      className="relative w-full min-h-screen py-24 sm:py-32 md:py-40 bg-[#0c0d0e] flex items-center overflow-hidden border-t border-white/5"
+      className="relative w-full min-h-screen py-24 sm:py-32 md:py-40 bg-[var(--bg-main)] flex items-center overflow-hidden border-t border-black/5 dark:border-white/5 transition-colors duration-300"
     >
       <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 md:px-14">
         {/* Main 3-Column Split Layout matching video frames 00-01 */}
@@ -97,7 +97,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
           <div className="md:col-span-4 flex flex-col justify-between h-full space-y-12">
             <AnimatedTitle
               as="span"
-              className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 block"
+              className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/70 block"
               yOffset={25}
             >
               {t.tag}
@@ -105,7 +105,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
 
             <AnimatedTitle
               as="h2"
-              className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-normal tracking-wide text-white uppercase leading-[1.08] drop-shadow-sm"
+              className="font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-normal tracking-wide text-neutral-900 dark:text-white uppercase leading-[1.08] drop-shadow-sm"
               delay={0.12}
             >
               {t.headline.map((line, idx) => (
@@ -123,7 +123,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
           >
             <div
               ref={imageCardRef}
-              className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-white/15 bg-[#16171a] will-change-transform [transform-style:preserve-3d]"
+              className="relative w-full max-w-[340px] sm:max-w-[380px] h-[480px] sm:h-[560px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-black/10 dark:border-white/15 bg-white dark:bg-[#16171a] will-change-transform [transform-style:preserve-3d]"
             >
               <div ref={imageInnerRef} className="relative w-full h-[120%] -top-[10%]">
                 <Image
@@ -133,7 +133,7 @@ export default function About({ lang, onLearnMore }: AboutProps) {
                   className="object-cover object-center"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/5 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 dark:from-black/50 via-transparent to-white/5 pointer-events-none" />
             </div>
           </div>
 
@@ -141,14 +141,14 @@ export default function About({ lang, onLearnMore }: AboutProps) {
           <div className="md:col-span-4 flex flex-col justify-center space-y-6 lg:pl-4">
             <LiveText
               text={t.paragraph1}
-              className="text-xs sm:text-sm text-[#9aa0a6] leading-relaxed font-sans-clean"
+              className="text-xs sm:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans-clean"
               delay={0.1}
               stagger={0.03}
             />
 
             <LiveText
               text={t.paragraph2}
-              className="text-xs sm:text-sm text-[#9aa0a6] leading-relaxed font-sans-clean"
+              className="text-xs sm:text-sm text-neutral-600 dark:text-[#9aa0a6] leading-relaxed font-sans-clean"
               delay={0.25}
               stagger={0.03}
             />

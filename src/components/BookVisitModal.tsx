@@ -63,15 +63,15 @@ export default function BookVisitModal({
       {/* Modal Container */}
       <div
         data-lenis-prevent
-        className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto no-scrollbar bg-[#141518] border border-[#2a2c33] rounded-2xl shadow-2xl p-6 sm:p-8 text-[#ededed] overscroll-contain"
+        className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto no-scrollbar bg-[#141518] dark:bg-[#141518] bg-white border border-[#2a2c33] dark:border-[#2a2c33] border-black/10 rounded-2xl shadow-2xl p-6 sm:p-8 text-[#ededed] dark:text-[#ededed] text-[#121316] overscroll-contain transition-colors duration-300"
       >
         {/* Subtle Ambient Glow */}
-        <div className="absolute -top-24 -right-24 w-60 h-60 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-60 h-60 bg-white/5 dark:bg-white/5 bg-black/5 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         <button
           onClick={resetAndClose}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full border border-white/10 dark:border-white/10 border-black/10 flex items-center justify-center text-white/70 dark:text-white/70 text-neutral-600 hover:text-black dark:hover:text-white hover:border-black/30 dark:hover:border-white/40 hover:bg-black/5 dark:hover:bg-white/5 transition-all cursor-pointer"
           aria-label="Close Modal"
         >
           <X size={16} />
@@ -81,13 +81,13 @@ export default function BookVisitModal({
           <div>
             {/* Header */}
             <div className="mb-6">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-white/50 font-mono">
+              <span className="text-[10px] tracking-[0.2em] uppercase text-white/50 dark:text-white/50 text-neutral-500 font-mono">
                 {lang === "en" ? "(PRIVATE APPOINTMENT)" : "(PRIVATER TERMIN)"}
               </span>
-              <h2 className="text-2xl sm:text-3xl font-editorial tracking-wide text-white mt-1">
+              <h2 className="text-2xl sm:text-3xl font-editorial tracking-wide text-white dark:text-white text-neutral-900 mt-1">
                 {lang === "en" ? "Reserve a Private Tour" : "Private Führung reservieren"}
               </h2>
-              <p className="text-xs sm:text-sm text-[#9aa0a6] mt-2 font-sans-clean leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#9aa0a6] dark:text-[#9aa0a6] text-neutral-600 mt-2 font-sans-clean leading-relaxed">
                 {lang === "en"
                   ? "Experience the architectural harmony of Elyse Residence in person. Our private concierge will host a tailored walkthrough."
                   : "Erleben Sie die architektonische Harmonie der Elyse Residence persönlich. Unser Concierge führt Sie exklusiv."}
@@ -98,35 +98,35 @@ export default function BookVisitModal({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 dark:text-white/60 text-neutral-600 mb-1">
                     {lang === "en" ? "Full Name" : "Vollständiger Name"}
                   </label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-white/40" />
                     <input
                       required
                       type="text"
                       placeholder="Lord Harrison"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#1c1d22] border border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-white/50 transition-colors"
+                      className="w-full bg-neutral-100 dark:bg-[#1c1d22] border border-black/15 dark:border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-black/40 dark:focus:border-white/50 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/60 mb-1">
                     {lang === "en" ? "Email Address" : "E-Mail-Adresse"}
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-white/40" />
                     <input
                       required
                       type="email"
                       placeholder="harrison@elyse.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#1c1d22] border border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-white/50 transition-colors"
+                      className="w-full bg-neutral-100 dark:bg-[#1c1d22] border border-black/15 dark:border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-black/40 dark:focus:border-white/50 transition-colors"
                     />
                   </div>
                 </div>
@@ -134,32 +134,32 @@ export default function BookVisitModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/60 mb-1">
                     {lang === "en" ? "Phone Number" : "Telefonnummer"}
                   </label>
                   <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-white/40" />
                     <input
                       required
                       type="tel"
                       placeholder="+1 (555) 019-2834"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#1c1d22] border border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-white/50 transition-colors"
+                      className="w-full bg-neutral-100 dark:bg-[#1c1d22] border border-black/15 dark:border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-black/40 dark:focus:border-white/50 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/60 mb-1">
                     {lang === "en" ? "Residence Interest" : "Bevorzugte Residenz"}
                   </label>
                   <div className="relative">
-                    <Home className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Home className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-white/40" />
                     <select
                       value={formData.residenceType}
                       onChange={(e) => setFormData({ ...formData, residenceType: e.target.value })}
-                      className="w-full bg-[#1c1d22] border border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-white/50 transition-colors appearance-none cursor-pointer"
+                      className="w-full bg-neutral-100 dark:bg-[#1c1d22] border border-black/15 dark:border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-black/40 dark:focus:border-white/50 transition-colors appearance-none cursor-pointer"
                     >
                       <option value="Lumière Grand Residence">Lumière Grand Residence (5 Bed / 5,600 sq ft)</option>
                       <option value="Lumière Master Duplex">Lumière Master Duplex (4 Bed / 3,850 sq ft)</option>
@@ -171,31 +171,31 @@ export default function BookVisitModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/60 mb-1">
                     {lang === "en" ? "Preferred Date" : "Wunschdatum"}
                   </label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-white/40" />
                     <input
                       required
                       type="date"
                       value={formData.date}
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full bg-[#1c1d22] border border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-white/50 transition-colors"
+                      className="w-full bg-neutral-100 dark:bg-[#1c1d22] border border-black/15 dark:border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-black/40 dark:focus:border-white/50 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-white/60 mb-1">
                     {lang === "en" ? "Preferred Time Slot" : "Zeitfenster"}
                   </label>
                   <div className="relative">
-                    <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-white/40" />
                     <select
                       value={formData.timeSlot}
                       onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                      className="w-full bg-[#1c1d22] border border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-white/50 transition-colors appearance-none cursor-pointer"
+                      className="w-full bg-neutral-100 dark:bg-[#1c1d22] border border-black/15 dark:border-[#2d3039] rounded-lg pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-black/40 dark:focus:border-white/50 transition-colors appearance-none cursor-pointer"
                     >
                       <option value="10:00 - 12:00">Morning (10:00 - 12:00)</option>
                       <option value="14:00 - 16:00">Afternoon (14:00 - 16:00)</option>
@@ -221,10 +221,10 @@ export default function BookVisitModal({
             <div className="w-14 h-14 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto text-emerald-400">
               <CheckCircle2 size={32} />
             </div>
-            <h3 className="text-2xl font-editorial text-white">
+            <h3 className="text-2xl font-editorial text-white dark:text-white text-neutral-900">
               {lang === "en" ? "Appointment Requested" : "Termin angefragt"}
             </h3>
-            <p className="text-xs text-[#9aa0a6] max-w-md mx-auto leading-relaxed">
+            <p className="text-xs text-[#9aa0a6] dark:text-[#9aa0a6] text-neutral-600 max-w-md mx-auto leading-relaxed">
               {lang === "en"
                 ? `Thank you, ${formData.name || "valued guest"}. Our Elyse concierge team will verify your chosen date and coordinate private gate security access.`
                 : `Vielen Dank. Unser Concierge-Team wird Ihren Termin bestätigen.`}

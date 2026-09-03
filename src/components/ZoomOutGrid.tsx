@@ -68,7 +68,7 @@ export default function ZoomOutGrid({
     <div
       id="zoom-out-showcase"
       ref={containerRef}
-      className="relative w-full h-screen min-h-screen bg-[#0c0d0e] flex flex-col justify-between items-center overflow-hidden py-8 sm:py-12 border-t border-white/5 select-none"
+      className="relative w-full h-screen min-h-screen bg-[var(--bg-main)] flex flex-col justify-between items-center overflow-hidden py-8 sm:py-12 border-t border-black/5 dark:border-white/5 select-none transition-colors duration-300"
     >
       {/* Top Tag & Header */}
       <div
@@ -78,14 +78,14 @@ export default function ZoomOutGrid({
         <div className="flex items-center gap-3">
           <AnimatedTitle
             as="span"
-            className="font-editorial italic text-xs sm:text-sm tracking-widest text-white/70 block"
+            className="font-editorial italic text-xs sm:text-sm tracking-widest text-neutral-500 dark:text-white/70 block"
             yOffset={20}
           >
             {t.zoomOut.tag}
           </AnimatedTitle>
         </div>
 
-        <div className="text-[11px] sm:text-xs text-white/50 font-mono tracking-widest uppercase hidden md:block">
+        <div className="text-[11px] sm:text-xs text-neutral-500 dark:text-white/50 font-mono tracking-widest uppercase hidden md:block">
           <LiveText text={t.zoomOut.instruction} delay={0.1} stagger={0.03} />
         </div>
 
